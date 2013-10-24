@@ -19,7 +19,7 @@ public class Jeu extends Game/** , Screen */
 
 	@Override
 	public void create() {
-		setScreen(new MainMenu(this));
+		setScreen(new AfficheJeu());
 
 	}
 
