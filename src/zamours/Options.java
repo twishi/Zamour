@@ -1,6 +1,5 @@
 package zamours;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -11,7 +10,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class MainMenu implements Screen {
+public class Options implements Screen {
+	
 	private float xDoigt, yDoigt;
 	boolean maintenu;
 
@@ -31,10 +31,9 @@ public class MainMenu implements Screen {
 	Sound soundTouchDown;
 	Music musicMenu;
 	
-	
 	Jeu game;
 
-	MainMenu(Jeu game){
+	Options(Jeu game){
 		this.game = game;
 	}
 	
@@ -43,12 +42,12 @@ public class MainMenu implements Screen {
 	public void show() {
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
 		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
-		musicMenu.setLooping(true);
 		if (Jeu.getDesactiveMusicMenu() == false){
 			musicMenu.play();
 		}else {
 			musicMenu.stop();
 		}
+		musicMenu.setLooping(true);
 		/** musicMenu.setVolume(0.5f); **/ // permet de baisser le volume de la musique du menu
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
@@ -61,13 +60,11 @@ public class MainMenu implements Screen {
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
 		background = new Texture(
-				Gdx.files.internal("menu1.png"));
+				Gdx.files.internal("background_options_s2.png"));
 
 
 
 		/********************************** Placement des 3 rectangles ****************************************************************/
-
-
 		play = new Texture(Gdx.files.internal("Play.png"));
 		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
 		options = new Texture(Gdx.files.internal("Options.png"));
@@ -83,10 +80,19 @@ public class MainMenu implements Screen {
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
 				if (rectangleQuest1.contains(x, y) && maintenu){
-					game.setScreen(new Quiz1());
+					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
 				} else if (rectangleQuest2.contains(x, y) && maintenu){
-					game.setScreen(new Options(game));
+					if(Jeu.getDesactiveMusicMenu()){
+						Jeu.setDesactiveMusicMenu(false);
+					} else {
+						Jeu.setDesactiveMusicMenu(true);
+					}
+					if(Jeu.getDesactiveSoundTouchDown()){
+						Jeu.setDesactiveSoundTouchDown(false);
+					} else {
+						Jeu.setDesactiveSoundTouchDown(true);
+					}
 					musicMenu.stop();
 				}
 				xDoigt = 0;
@@ -98,11 +104,6 @@ public class MainMenu implements Screen {
 			@Override
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
 				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)){
-					if (Jeu.getDesactiveMusicMenu() == false){
-						musicMenu.play();
-					}else {
-						musicMenu.stop();
-					}
 					if (Jeu.getDesactiveSoundTouchDown() == false)
 						soundTouchDown.play();
 				}

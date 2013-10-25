@@ -160,7 +160,7 @@ public class Quiz1 implements Screen{
 				- positionQuestion1 + 2 * spaceBetweenAnswers - 20, screenWidth
 				- 2 * ((screenWidth / 10) - 10), 100);
 
-		textureRectangle1 = new Texture(Gdx.files.internal("reponse.png"));
+		textureRectangle1 = new Texture(pixmap1);
 		textureRectangle1bis = new Texture(pixmap1bis);
 		textureRectangle2 = new Texture(pixmap2);
 		textureRectangle2bis = new Texture(pixmap2bis);
@@ -658,7 +658,8 @@ public class Quiz1 implements Screen{
 			@Override
 			public boolean touchDown(int x, int y, int arg2, int arg3) {
 				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y) || rectangleQuest3.contains(x, y)){
-					soundTouchDown.play();
+					if (Jeu.getDesactiveSoundTouchDown() == false)
+						soundTouchDown.play();
 				}
 				if (rectangleQuest1.contains(x,y)){
 					appuiRep = 1;
