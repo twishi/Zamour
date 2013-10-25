@@ -58,7 +58,6 @@ public class Quiz1 implements Screen{
 	int appuiRep;	// va me donner le numero de reponse sur lequel l'utilisateur a clicked (look touchDown), va me servir pour touchUp
 	
 	private Sound soundTouchDown;
-<<<<<<< HEAD
 	private Sound soundTouchUp;
 	
 	Jeu game;
@@ -68,8 +67,7 @@ public class Quiz1 implements Screen{
 	}
 	
 	
-=======
->>>>>>> b006943e2d36cb9c84d76fe764b224d8a0c5377e
+
 	@Override
 	public void dispose() {
 		

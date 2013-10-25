@@ -16,14 +16,11 @@ public class Options implements Screen {
 	boolean maintenu;
 
 	private SpriteBatch batch;
-<<<<<<< HEAD
 	private Texture retourMenu;
 	private Texture options;
 	private Texture optionsPressed;
-=======
 	private Texture play;
 	private Texture playPressed;
->>>>>>> b006943e2d36cb9c84d76fe764b224d8a0c5377e
 	private Texture background;
 	private Texture noteMusique;
 	private Texture noteMusiqueBarre;
@@ -74,16 +71,14 @@ public class Options implements Screen {
 
 
 
-<<<<<<< HEAD
 		/********************************** Placement des rectangles ****************************************************************/
 		retourMenu = new Texture(Gdx.files.internal("retour.png"));
 		options = new Texture(Gdx.files.internal("Options.png"));
 		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
-=======
 		/********************************** Placement des 3 rectangles ****************************************************************/
 		play = new Texture(Gdx.files.internal("Play.png"));
 		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
->>>>>>> b006943e2d36cb9c84d76fe764b224d8a0c5377e
+
 
 
 		/*********************************************************************************************************************************/
@@ -214,17 +209,12 @@ public class Options implements Screen {
 	}
 
 	public void afficheBouton() {
-<<<<<<< HEAD
 		/** bouton retour **/
 		rectangleQuest1 = new Rectangle(screenWidth/10, screenHeight - screenHeight/10, 40, 80);
 		/** note musique **/
 		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2, 40, 80);
 		/** sono **/
 		rectangleQuest3 = new Rectangle(screenWidth/2 - 40, screenHeight/2 +screenHeight/8, 80,46);
-=======
-		rectangleQuest1 = new Rectangle(0, 0, 40, 80);
-		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2 - 80, 40, 80);
->>>>>>> b006943e2d36cb9c84d76fe764b224d8a0c5377e
 
 		batch.draw(retourMenu, screenWidth/10, screenHeight/10);		
 
