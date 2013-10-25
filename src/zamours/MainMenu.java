@@ -83,11 +83,11 @@ public class MainMenu implements Screen {
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
 				if (rectangleQuest1.contains(x, y) && maintenu){
-					game.setScreen(new Quiz1());
-					musicMenu.stop();
+					game.setScreen(new ChoixQuiz(game));
+					musicMenu.setVolume(0.f);
 				} else if (rectangleQuest2.contains(x, y) && maintenu){
 					game.setScreen(new Options(game));
-					musicMenu.stop();
+					musicMenu.setVolume(0.f);
 				}
 				xDoigt = 0;
 				yDoigt = 0;
@@ -99,9 +99,9 @@ public class MainMenu implements Screen {
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
 				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)){
 					if (Jeu.getDesactiveMusicMenu() == false){
-						musicMenu.play();
+						musicMenu.setVolume(0.5f);
 					}else {
-						musicMenu.stop();
+						musicMenu.setVolume(0.f);
 					}
 					if (Jeu.getDesactiveSoundTouchDown() == false)
 						soundTouchDown.play();

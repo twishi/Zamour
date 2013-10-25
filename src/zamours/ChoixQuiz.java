@@ -10,24 +10,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Options implements Screen {
+public class ChoixQuiz implements Screen {
 	
 	private float xDoigt, yDoigt;
 	boolean maintenu;
 
 	private SpriteBatch batch;
-	private Texture retourMenu;
+	private Texture play;
+	private Texture playPressed;
 	private Texture options;
 	private Texture optionsPressed;
+	private Texture retourMenu;
 	private Texture background;
-	private Texture noteMusique;
-	private Texture noteMusiqueBarre;
+	private Texture chocolat1;
 	Rectangle rectangleQuest1;
 	Rectangle rectangleQuest2;
 	Rectangle rectangleQuest3;
-	private Texture sonoOn;
-	private Texture sonoOff;
-
 	int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
 	int spaceBetweenQuestAnswers;
@@ -36,15 +34,17 @@ public class Options implements Screen {
 	Sound soundTouchDown;
 	Music musicMenu;
 	
+	/************* obligé pour le changement de screen *************/
 	Jeu game;
 
-	Options(Jeu game){
+	ChoixQuiz(Jeu game){
 		this.game = game;
 	}
-	
+	/***************************************************************/
 
 	@Override
 	public void show() {
+		retourMenu = new Texture(Gdx.files.internal("retour.png"));
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
 		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
 		if (Jeu.getDesactiveMusicMenu() == false){
@@ -65,24 +65,21 @@ public class Options implements Screen {
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
 		background = new Texture(
-				Gdx.files.internal("background_options_s2.png"));
+				Gdx.files.internal("background_choix_quiz_s2.png"));
 
 
 
-		/********************************** Placement des rectangles ****************************************************************/
-		retourMenu = new Texture(Gdx.files.internal("retour.png"));
+		/********************************** Placement des 3 rectangles ****************************************************************/
+		play = new Texture(Gdx.files.internal("Play.png"));
+		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
 		options = new Texture(Gdx.files.internal("Options.png"));
 		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
 
 
 		/*********************************************************************************************************************************/
 		
-		/****** les boutons pour le son *****/
-		noteMusique = new Texture(Gdx.files.internal("pics_note_musique.png"));
-		noteMusiqueBarre = new Texture(Gdx.files.internal("pics_note_musique_barre.png"));
-		sonoOn = new Texture(Gdx.files.internal("pics_sono_on.png"));
-		sonoOff = new Texture(Gdx.files.internal("pics_sono_off.png"));
-
+		/****** texture chocolat  *****/
+		chocolat1 = new Texture(Gdx.files.internal("pics_chocolat_1.jpg"));
 		
 	}
 
@@ -91,22 +88,12 @@ public class Options implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
-				/** couper ou remettre la musique **/
-				if (rectangleQuest2.contains(x, y)){
-					if(Jeu.getDesactiveMusicMenu()){
-						Jeu.setDesactiveMusicMenu(false);
-					} else {
-						Jeu.setDesactiveMusicMenu(true);
-					}
+				if (rectangleQuest1.contains(x, y) && maintenu){
+					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
-				}
-				/** couper ou remettre le bruit des touches **/
-				if (rectangleQuest3.contains(x, y)){
-					if(Jeu.getDesactiveSoundTouchDown()){
-						Jeu.setDesactiveSoundTouchDown(false);
-					} else {
-						Jeu.setDesactiveSoundTouchDown(true);
-					}
+				} else if (rectangleQuest2.contains(x, y) && maintenu){
+					game.setScreen(new Quiz1(game));
+					musicMenu.stop();
 				}
 				xDoigt = 0;
 				yDoigt = 0;
@@ -203,24 +190,18 @@ public class Options implements Screen {
 	}
 
 	public void afficheBouton() {
-		/** bouton retour **/
 		rectangleQuest1 = new Rectangle(screenWidth/10, screenHeight - screenHeight/10, 40, 80);
-		/** note musique **/
-		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2, 40, 80);
-		/** sono **/
-		rectangleQuest3 = new Rectangle(screenWidth/2 - 40, screenHeight/2 +screenHeight/8, 80,46);
+		rectangleQuest2 = new Rectangle(screenWidth/2 - 80, screenHeight/2, 150, 150);
+		rectangleQuest3 = new Rectangle(screenWidth/10, screenHeight - screenHeight/10, 40, 80);
+
 
 		batch.draw(retourMenu, screenWidth/10, screenHeight/10);		
 
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(noteMusiqueBarre, screenWidth/2 - 20, screenHeight/2);
+			batch.draw(chocolat1, screenWidth/2 - 80, screenHeight/2);
 		} else {
-			batch.draw(noteMusique, screenWidth/2 - 20, screenHeight/2);
-		}
-		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(sonoOff, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);
-		} else {
-			batch.draw(sonoOn, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);
+			batch.draw(chocolat1, screenWidth/2 - 75, screenHeight/2);
+
 		}
 	}
 }

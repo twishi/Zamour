@@ -17,6 +17,8 @@ public class Jeu extends Game/** , Screen */
 {
 	static boolean desactiveMusicMenu = false;
 	static boolean desactiveSoundTouchDown  = false;
+	static int numeroQuestionQuiz;
+	static int nbRepJuste;
 	
 	public static boolean getDesactiveMusicMenu(){
 		return desactiveMusicMenu;
@@ -32,6 +34,10 @@ public class Jeu extends Game/** , Screen */
 	
 	public static void setDesactiveSoundTouchDown(boolean b){
 		desactiveSoundTouchDown = b;
+	}
+	
+	public static boolean quizTermine(){
+		return numeroQuestionQuiz == 21;
 	}
 	
 

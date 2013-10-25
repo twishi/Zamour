@@ -48,8 +48,7 @@ public class Quiz1 implements Screen{
 	int[] tabReponseBoy;
 	int[] tabReponseGirl;
 	boolean[] question;
-
-	int compteur = 1;
+	
 	int i = 0;
 	boolean yo = false;
 	
@@ -60,6 +59,14 @@ public class Quiz1 implements Screen{
 	
 	private Sound soundTouchDown;
 	private Sound soundTouchUp;
+	
+	Jeu game;
+
+	Quiz1(Jeu game){
+		this.game = game;
+	}
+	
+	
 	@Override
 	public void dispose() {
 		
@@ -171,10 +178,14 @@ public class Quiz1 implements Screen{
 		tabReponseBoy = new int[10];
 		tabReponseGirl = new int[10];
 		question = new boolean[10];
+		
+		Jeu.numeroQuestionQuiz = 1;
 	}
+	
+	
 
 	public void afficheQuestionReponses() {
-		switch (compteur) {
+		switch (Jeu.numeroQuestionQuiz) {
 		case 1:
 			pageSex = "boy";
 			batch.draw(backgroundBoy, 0, 0);
@@ -470,6 +481,7 @@ public class Quiz1 implements Screen{
 		for(int i = 0; i < tabReponseBoy.length; i++){
 			if(tabReponseBoy[i] == tabReponseGirl[i]) nbRepJuste++;
 		}
+		Jeu.nbRepJuste = nbRepJuste;
 		return nbRepJuste;
 	}
 
@@ -505,60 +517,60 @@ public class Quiz1 implements Screen{
 					/** test **/
 					/**********/
 					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesBoy++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				} else if (rectangleQuest2.contains(x, y) && maintenu && pageSex.equals("boy") && appuiRep == 2){
 					tabReponseBoy[compteurNombreReponsesBoy] = 2;
 					/**********/
 					/** test **/
 					/**********/
 					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesBoy++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				} else if (rectangleQuest3.contains(x, y) && maintenu && pageSex.equals("boy") && appuiRep == 3) {
 					tabReponseBoy[compteurNombreReponsesBoy] = 3;
 					/**********/
 					/** test **/
 					/**********/
 					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesBoy++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				}
 				/***************/
 				/**** girl *****/
@@ -569,65 +581,65 @@ public class Quiz1 implements Screen{
 					/** test **/
 					/**********/
 					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesGirl++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				} else if (rectangleQuest2.contains(x, y) && maintenu && pageSex.equals("girl") && appuiRep == 2){
 					tabReponseGirl[compteurNombreReponsesGirl] = 2;
 					/**********/
 					/** test **/
 					/**********/
 					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesGirl++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				} else if (rectangleQuest3.contains(x, y) && maintenu && pageSex.equals("girl") && appuiRep == 3) {
 					tabReponseGirl[compteurNombreReponsesGirl] = 3;
 					/**********/
 					/** test **/
 					/**********/
 					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + compteur + "\t");
+					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 					/**************/
 					/** fin test **/
 					/**************/
 					compteurNombreReponsesGirl++;
-					compteur++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && compteur != 1){
+					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
 						if (memeRep()){	// si ils ont repondu pareil
 							System.out.println("bien joué");
 						} else {
 							System.out.println("loupe");
 						}
 					}
+					Jeu.numeroQuestionQuiz++;
 				}
 				/**********/
 				/** test **/
 				/**********/
-				if (compteur == 21) {
+				if (Jeu.quizTermine()) {
 					System.out.println("Fin du quizz ! \n");
 					System.out.println("Affichage reponses boy : ");
 					for(int i = 0; i < tabReponseBoy.length; i++){
@@ -640,6 +652,9 @@ public class Quiz1 implements Screen{
 					}
 					System.out.println();
 					System.out.println("Le nombre de reponse(s) juste est : " + compareReponses() + "/10");
+					System.out.println();
+					System.out.println("Le numeroQuestionQuiz est : " + Jeu.numeroQuestionQuiz++);
+					game.setScreen(new ResultatDuQuiz(game));	// changement de page, redirection vers la screen ResultatDuQuiz
 				}
 				/**************/
 				/** fin test **/
