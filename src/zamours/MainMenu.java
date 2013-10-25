@@ -61,7 +61,7 @@ public class MainMenu implements Screen {
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
 		background = new Texture(
-				Gdx.files.internal("menu1.png"));
+				Gdx.files.internal("background_main_menu_s2.png"));
 
 
 
