@@ -21,6 +21,8 @@ public class Options implements Screen {
 	private Texture options;
 	private Texture optionsPressed;
 	private Texture background;
+	private Texture noteMusique;
+	private Texture noteMusiqueBarre;
 	Rectangle rectangleQuest1;
 	Rectangle rectangleQuest2;
 	int screenWidth, screenHeight;
@@ -72,6 +74,11 @@ public class Options implements Screen {
 
 
 		/*********************************************************************************************************************************/
+		
+		/****** les boutons note de musique, et note de musique barre *****/
+		noteMusique = new Texture(Gdx.files.internal("pics_note_musique.png"));
+		noteMusiqueBarre = new Texture(Gdx.files.internal("pics_note_musique_barre.png"));
+		
 	}
 
 	public void manipulerMenu() {
@@ -186,8 +193,8 @@ public class Options implements Screen {
 	}
 
 	public void afficheBouton() {
-		rectangleQuest1 = new Rectangle(67, screenHeight - 544 - 71, 348, 58);
-		rectangleQuest2 = new Rectangle(67, screenHeight - 383 - 80, 348, 58);
+		rectangleQuest1 = new Rectangle(0, 0, 40, 80);
+		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2, 40, 80);
 
 
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
@@ -198,9 +205,9 @@ public class Options implements Screen {
 			batch.draw(play, 32, 550);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(optionsPressed, 32, 400);
+			batch.draw(noteMusiqueBarre, screenWidth/2 - 20, screenHeight/2);
 		} else {
-			batch.draw(options, 32, 400);
+			batch.draw(noteMusique, screenWidth/2 - 20, screenHeight/2);
 
 		}
 	}
