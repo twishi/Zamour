@@ -58,6 +58,7 @@ public class Quiz1 implements Screen{
 	int appuiRep;	// va me donner le numero de reponse sur lequel l'utilisateur a clicked (look touchDown), va me servir pour touchUp
 	
 	private Sound soundTouchDown;
+<<<<<<< HEAD
 	private Sound soundTouchUp;
 	
 	Jeu game;
@@ -67,6 +68,8 @@ public class Quiz1 implements Screen{
 	}
 	
 	
+=======
+>>>>>>> b006943e2d36cb9c84d76fe764b224d8a0c5377e
 	@Override
 	public void dispose() {
 		
@@ -106,7 +109,6 @@ public class Quiz1 implements Screen{
 
 	@Override
 	public void show() {
-		soundTouchUp = Gdx.audio.newSound(Gdx.files.internal("sound/sound_click_up.wav"));
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("sound/sound_click_down.wav"));
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
