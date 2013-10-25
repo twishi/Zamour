@@ -18,8 +18,6 @@ public class Options implements Screen {
 	private SpriteBatch batch;
 	private Texture play;
 	private Texture playPressed;
-	private Texture options;
-	private Texture optionsPressed;
 	private Texture background;
 	private Texture noteMusique;
 	private Texture noteMusiqueBarre;
@@ -69,8 +67,6 @@ public class Options implements Screen {
 		/********************************** Placement des 3 rectangles ****************************************************************/
 		play = new Texture(Gdx.files.internal("Play.png"));
 		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
-		options = new Texture(Gdx.files.internal("Options.png"));
-		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
 
 
 		/*********************************************************************************************************************************/
@@ -194,7 +190,7 @@ public class Options implements Screen {
 
 	public void afficheBouton() {
 		rectangleQuest1 = new Rectangle(0, 0, 40, 80);
-		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2, 40, 80);
+		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2 - 80, 40, 80);
 
 
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
