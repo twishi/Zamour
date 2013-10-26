@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -21,6 +22,8 @@ public class Quiz1 implements Screen{
 	private SpriteBatch batch;
 	private Texture backgroundBoy;
 	private Texture backgroundGirl;
+	private Sprite spritebackgroundBoy;
+	private Sprite spritebackgroundGirl;
 	private BitmapFont fontmessage1;
 	private Texture textureRectangle1;
 	private Texture textureRectangle1bis;
@@ -105,11 +108,13 @@ public class Quiz1 implements Screen{
 	public void show() {
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("sound/sound_click_down.wav"));
 		Texture.setEnforcePotImages(false);
+		
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		spaceBetweenAnswers = screenHeight / 6;
-		spaceBetweenQuestAnswers = screenHeight / 4;
+		
+		
 		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
+		
 		batch = new SpriteBatch();
 		/**
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
@@ -118,9 +123,16 @@ public class Quiz1 implements Screen{
 				Gdx.files.internal("background_blue_s2.png"));
 		backgroundGirl = new Texture(
 				Gdx.files.internal("background_pink_s2.png"));
+		spritebackgroundBoy = new Sprite(backgroundBoy);
+		spritebackgroundGirl = new Sprite(backgroundGirl);
+		spritebackgroundBoy.setSize(screenWidth, screenHeight);
+		spritebackgroundGirl.setSize(screenWidth, screenHeight);
 		
 		fontmessage1 =  new BitmapFont(Gdx.files.internal("font/white.fnt"), false);
 
+		spaceBetweenAnswers = screenHeight / 6;
+		spaceBetweenQuestAnswers = screenHeight / 4;
+		
 		quest1 = new Question(1);
 		rep1 = new Reponse(1);
 
@@ -149,7 +161,7 @@ public class Quiz1 implements Screen{
 		switch (Jeu.numeroQuestionQuiz) {
 		case 1:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(0),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -164,7 +176,7 @@ public class Quiz1 implements Screen{
 
 		case 2:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(1),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -178,7 +190,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 3:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(2),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -192,7 +204,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 4:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(3),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -206,7 +218,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 5:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(4),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -220,7 +232,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 6:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(5),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -234,7 +246,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 7:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(6),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -248,7 +260,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 8:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(7),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -262,7 +274,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 9:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(8),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -276,7 +288,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 10:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(9),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -290,7 +302,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 11:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(10),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -304,7 +316,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 12:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(11),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -318,7 +330,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 13:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(12),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -332,7 +344,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 14:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(13),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -346,7 +358,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 15:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(14),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -360,7 +372,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 16:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(15),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -374,7 +386,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 17:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(16),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -388,7 +400,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 18:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(17),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -402,7 +414,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 19:
 			pageSex = "girl";
-			batch.draw(backgroundGirl, 0, 0);
+			spritebackgroundGirl.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(18),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -416,7 +428,7 @@ public class Quiz1 implements Screen{
 			break;
 		case 20:
 			pageSex = "boy";
-			batch.draw(backgroundBoy, 0, 0);
+			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(19),
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
@@ -681,14 +693,14 @@ public class Quiz1 implements Screen{
 		circleBackButton = new Circle( screenWidth/15 + 34, 47, 26);
 		
 		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
+				- positionQuestion1 - 17, screenWidth - 2
+				* ((screenWidth / 10) - 10), 85);
 		rectangleQuest2 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + spaceBetweenAnswers - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
+				- positionQuestion1 + spaceBetweenAnswers - 17, screenWidth - 2
+				* ((screenWidth / 10) - 10), 85);
 		rectangleQuest3 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + 2 * spaceBetweenAnswers - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
+				- positionQuestion1 + 2 * spaceBetweenAnswers - 17, screenWidth - 2
+				* ((screenWidth / 10) - 10), 85);
 
 		afficheQuestionReponses();
 		

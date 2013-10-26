@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -19,6 +20,7 @@ public class ChoixQuiz implements Screen {
 	private SpriteBatch batch;
 	private Texture retourMenu;
 	private Texture background;
+	private Sprite spritebackground;
 	private Texture chocolat1;
 	private Rectangle rectangleQuiz1;
 	private Circle circleBackButton;
@@ -49,24 +51,26 @@ public class ChoixQuiz implements Screen {
 			musicMenu.stop();
 		}
 		musicMenu.setLooping(true);
-		/** musicMenu.setVolume(0.5f); **/ // permet de baisser le volume de la musique du menu
+		musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
+		
 		Texture.setEnforcePotImages(false);
+		
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
+		
 		spaceBetweenAnswers = screenHeight / 6;
 		spaceBetweenQuestAnswers = screenHeight / 4;
 		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
 		batch = new SpriteBatch();
-		/**
-		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
-		 */
+
 		background = new Texture(
 				Gdx.files.internal("background_choix_quiz_s2.png"));
-
+		spritebackground = new Sprite(background);
+		spritebackground.setSize(screenWidth, screenHeight);
 
 		
 		/****** texture chocolat  *****/
-		chocolat1 = new Texture(Gdx.files.internal("pics_chocolat_1.jpg"));
+		chocolat1 = new Texture(Gdx.files.internal("chocolat1.png"));
 		
 	}
 
@@ -155,7 +159,7 @@ public class ChoixQuiz implements Screen {
 
 		manipulerMenu(); // gestion des input
 		batch.begin();
-		batch.draw(background, 0, 0);
+		spritebackground.draw(batch);
 		afficheBouton();
 		batch.end();
 

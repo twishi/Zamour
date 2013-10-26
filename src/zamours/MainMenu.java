@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -21,6 +22,7 @@ public class MainMenu implements Screen {
 	private Texture options;
 	private Texture optionsPressed;
 	private Texture background;
+	private Sprite spritebackground;
 	Rectangle rectangleQuest1;
 	Rectangle rectangleQuest2;
 	int screenWidth, screenHeight;
@@ -63,6 +65,8 @@ public class MainMenu implements Screen {
 		 */
 		background = new Texture(
 				Gdx.files.internal("background_main_menu_s2.png"));
+		spritebackground = new Sprite(background);
+		spritebackground.setSize(screenWidth, screenHeight);
 
 
 
@@ -164,7 +168,7 @@ public class MainMenu implements Screen {
 
 		manipulerMenu(); // gestion des input
 		batch.begin();
-		batch.draw(background, 0, 0);
+		spritebackground.draw(batch);
 		afficheBouton();
 		batch.end();
 
