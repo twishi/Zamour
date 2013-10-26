@@ -65,7 +65,7 @@ public class ResultatDuQuiz implements Screen {
 				Gdx.files.internal("background_options_s2.png"));
 
 		chocolat10 = new Texture(Gdx.files.internal("pics_chocolat_res_10.jpg"));
-		fontmessage1 = new BitmapFont();
+		fontmessage1 = new BitmapFont(Gdx.files.internal("font/white.fnt"), false);
 
 		
 	}
