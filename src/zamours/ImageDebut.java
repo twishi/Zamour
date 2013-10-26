@@ -7,6 +7,7 @@ import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,6 +19,8 @@ public class ImageDebut implements Screen{
 	private Sprite spriteImageDebut;
 	private TweenManager tweenManager;
 	int screenWidth, screenHeight;
+	Music musicDebut;
+	
 	Jeu game;
 	
 	ImageDebut(Jeu game){
@@ -66,6 +69,8 @@ public class ImageDebut implements Screen{
 	public void show() {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
+		musicDebut = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_debut.wav"));
+		musicDebut.play();
 		
 		batch = new SpriteBatch();
 		tweenManager = new TweenManager();
