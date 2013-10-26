@@ -21,9 +21,9 @@ public class Options implements Screen {
 	private Texture background;
 	private Texture noteMusique;
 	private Texture noteMusiqueBarre;
-	Circle circleBackButton;
-	Rectangle rectangleMusic;
-	Rectangle rectangleSono;
+	private Circle circleBackButton;
+	private Rectangle rectangleMusic;
+	private Rectangle rectangleSono;
 	private Texture sonoOn;
 	private Texture sonoOff;
 
@@ -32,10 +32,10 @@ public class Options implements Screen {
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	Sound soundTouchDown;
-	Music musicMenu;
+	private Sound soundTouchDown;
+	private Music musicMenu;
 	
-	Jeu game;
+	private Jeu game;
 
 	Options(Jeu game){
 		this.game = game;

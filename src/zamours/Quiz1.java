@@ -5,11 +5,10 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -23,12 +22,6 @@ public class Quiz1 implements Screen{
 	private Texture backgroundBoy;
 	private Texture backgroundGirl;
 	private BitmapFont fontmessage1;
-	private Pixmap pixmap1;
-	private Pixmap pixmap1bis;
-	private Pixmap pixmap2;
-	private Pixmap pixmap2bis;
-	private Pixmap pixmap3;
-	private Pixmap pixmap3bis;
 	private Texture textureRectangle1;
 	private Texture textureRectangle1bis;
 	private Texture textureRectangle2;
@@ -55,7 +48,7 @@ public class Quiz1 implements Screen{
 	int i = 0;
 	boolean yo = false;
 	
-	String pageSex;	// need pour savoir quel tableau remplir dans touchUp
+	private String pageSex;	// need pour savoir quel tableau remplir dans touchUp
 	int compteurNombreReponsesBoy = 0;
 	int compteurNombreReponsesGirl = 0;
 	int appuiRep;	// va me donner le numero de reponse sur lequel l'utilisateur a clicked (look touchDown), va me servir pour touchUp
@@ -63,7 +56,7 @@ public class Quiz1 implements Screen{
 	private Sound soundTouchDown;
 	
 	
-	Jeu game;
+	private Jeu game;
 
 	Quiz1(Jeu game){
 		this.game = game;
@@ -132,50 +125,13 @@ public class Quiz1 implements Screen{
 
 		/********************************** Placement des 3 rectangles ****************************************************************/
 
-		transparenceNoClick = 0.4f;
-		transparenceClick = 0.1f;
-		pixmap1 = new Pixmap(screenWidth, screenHeight, Pixmap.Format.RGBA8888);
-		pixmap1bis = new Pixmap(screenWidth, screenHeight,
-				Pixmap.Format.RGBA8888);
-		pixmap2 = new Pixmap(screenWidth, screenHeight, Pixmap.Format.RGBA8888);
-		pixmap2bis = new Pixmap(screenWidth, screenHeight,
-				Pixmap.Format.RGBA8888);
-		pixmap3 = new Pixmap(screenWidth, screenHeight, Pixmap.Format.RGBA8888);
-		pixmap3bis = new Pixmap(screenWidth, screenHeight,
-				Pixmap.Format.RGBA8888);
 
-		pixmap1.setColor(1f, 1f, 1f, transparenceNoClick);
-		pixmap1bis.setColor(1f, 1f, 1f, transparenceClick);
-		pixmap2.setColor(1f, 1f, 1f, transparenceNoClick);
-		pixmap2bis.setColor(1f, 1f, 1f, transparenceClick);
-		pixmap3.setColor(1f, 1f, 1f, transparenceNoClick);
-		pixmap3bis.setColor(1f, 1f, 1f, transparenceClick);
-
-		pixmap1.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
-		pixmap1bis.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
-		pixmap2.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + spaceBetweenAnswers - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
-		pixmap2bis.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + spaceBetweenAnswers - 20, screenWidth - 2
-				* ((screenWidth / 10) - 10), 100);
-		pixmap3.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + 2 * spaceBetweenAnswers - 20, screenWidth
-				- 2 * ((screenWidth / 10) - 10), 100);
-		pixmap3bis.fillRectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + 2 * spaceBetweenAnswers - 20, screenWidth
-				- 2 * ((screenWidth / 10) - 10), 100);
-
-		textureRectangle1 = new Texture(pixmap1);
-		textureRectangle1bis = new Texture(pixmap1bis);
-		textureRectangle2 = new Texture(pixmap2);
-		textureRectangle2bis = new Texture(pixmap2bis);
-		textureRectangle3 = new Texture(pixmap3);
-		textureRectangle3bis = new Texture(pixmap3bis);
+		textureRectangle1 = new Texture(Gdx.files.internal("reponse.png"));
+		textureRectangle1bis = new Texture(Gdx.files.internal("reponseClick.png"));
+		textureRectangle2 = new Texture(Gdx.files.internal("reponse.png"));
+		textureRectangle2bis = new Texture(Gdx.files.internal("reponseClick.png"));
+		textureRectangle3 = new Texture(Gdx.files.internal("reponse.png"));
+		textureRectangle3bis = new Texture(Gdx.files.internal("reponseClick.png"));
 		/*********************************************************************************************************************************/
 
 		tabReponseBoy = new int[10];
@@ -739,21 +695,21 @@ public class Quiz1 implements Screen{
 		
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
-			batch.draw(textureRectangle1bis, 0, 0);
+			batch.draw(textureRectangle1bis, -5, 432);
 
 		} else {
-			batch.draw(textureRectangle1, 0, 0);
+			batch.draw(textureRectangle1, -5,432);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle2bis, 0, 0);
+			batch.draw(textureRectangle2bis, -5, 297);
 		} else {
-			batch.draw(textureRectangle2, 0, 0);
+			batch.draw(textureRectangle2, -5, 297);
 
 		}
 		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle3bis, 0, 0);
+			batch.draw(textureRectangle3bis, -5, 297);
 		} else {
-			batch.draw(textureRectangle3, 0, 0);
+			batch.draw(textureRectangle3, -5, 165);
 		}
 	}
 }

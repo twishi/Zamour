@@ -20,15 +20,15 @@ public class ChoixQuiz implements Screen {
 	private Texture retourMenu;
 	private Texture background;
 	private Texture chocolat1;
-	Rectangle rectangleQuiz1;
+	private Rectangle rectangleQuiz1;
 	private Circle circleBackButton;
-	int screenWidth, screenHeight;
+	private int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	Sound soundTouchDown;
-	Music musicMenu;
+	private Sound soundTouchDown;
+	private Music musicMenu;
 	
 	/************* obligé pour le changement de screen *************/
 	Jeu game;

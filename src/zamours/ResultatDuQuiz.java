@@ -14,20 +14,20 @@ import com.badlogic.gdx.math.Circle;
 
 public class ResultatDuQuiz implements Screen {
 	
-	boolean maintenu;
+	private boolean maintenu;
 	
 	private BitmapFont fontmessage1;
 	private SpriteBatch batch;
 	private Texture retourMenu;
 	private Texture background;
-	Circle circleBackButton;
-	int screenWidth, screenHeight;
+	private Circle circleBackButton;
+	private int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	Sound soundTouchDown;
-	Music musicMenu;
+	private Sound soundTouchDown;
+	private Music musicMenu;
 	
 	/************* obligé pour le changement de screen *************/
 	Jeu game;
