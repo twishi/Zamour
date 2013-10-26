@@ -8,6 +8,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Options implements Screen {
@@ -17,16 +18,12 @@ public class Options implements Screen {
 
 	private SpriteBatch batch;
 	private Texture retourMenu;
-	private Texture options;
-	private Texture optionsPressed;
-	private Texture play;
-	private Texture playPressed;
 	private Texture background;
 	private Texture noteMusique;
 	private Texture noteMusiqueBarre;
-	Rectangle rectangleQuest1;
-	Rectangle rectangleQuest2;
-	Rectangle rectangleQuest3;
+	Circle circleBackButton;
+	Rectangle rectangleMusic;
+	Rectangle rectangleSono;
 	private Texture sonoOn;
 	private Texture sonoOff;
 
@@ -70,19 +67,10 @@ public class Options implements Screen {
 				Gdx.files.internal("background_options_s2.png"));
 
 
-
-		/********************************** Placement des rectangles ****************************************************************/
-		retourMenu = new Texture(Gdx.files.internal("retour.png"));
-		options = new Texture(Gdx.files.internal("Options.png"));
-		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
-		/********************************** Placement des 3 rectangles ****************************************************************/
-		play = new Texture(Gdx.files.internal("Play.png"));
-		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
+		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 
 
 
-		/*********************************************************************************************************************************/
-		
 		/****** les boutons pour le son *****/
 		noteMusique = new Texture(Gdx.files.internal("pics_note_musique.png"));
 		noteMusiqueBarre = new Texture(Gdx.files.internal("pics_note_musique_barre.png"));
@@ -98,7 +86,7 @@ public class Options implements Screen {
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
 				/** couper ou remettre la musique **/
-				if (rectangleQuest2.contains(x, y)){
+				if (rectangleMusic.contains(x, y)){
 					if(Jeu.getDesactiveMusicMenu()){
 						Jeu.setDesactiveMusicMenu(false);
 					} else {
@@ -107,7 +95,7 @@ public class Options implements Screen {
 					musicMenu.stop();
 				}
 				/** couper ou remettre le bruit des touches **/
-				if (rectangleQuest3.contains(x, y)){
+				if (rectangleSono.contains(x, y)){
 					if(Jeu.getDesactiveSoundTouchDown()){
 						Jeu.setDesactiveSoundTouchDown(false);
 					} else {
@@ -122,11 +110,11 @@ public class Options implements Screen {
 
 			@Override
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)){
+				if(circleBackButton.contains(x, y) || rectangleMusic.contains(x, y)){
 					if (Jeu.getDesactiveSoundTouchDown() == false)
 						soundTouchDown.play();
 				}
-				if (rectangleQuest1.contains(x, y)){
+				if (circleBackButton.contains(x, y)){
 					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
 				}
@@ -210,20 +198,20 @@ public class Options implements Screen {
 
 	public void afficheBouton() {
 		/** bouton retour **/
-		rectangleQuest1 = new Rectangle(screenWidth/10, screenHeight - screenHeight/10, 40, 80);
+		circleBackButton = new Circle(screenWidth/7 + 5 , screenHeight - screenHeight/8 , 28);
 		/** note musique **/
-		rectangleQuest2 = new Rectangle(screenWidth/2 - 20, screenHeight/2, 40, 80);
+		rectangleMusic = new Rectangle(screenWidth/2 - 20, screenHeight/2 - 80, 40, 80);
 		/** sono **/
-		rectangleQuest3 = new Rectangle(screenWidth/2 - 40, screenHeight/2 +screenHeight/8, 80,46);
+		rectangleSono = new Rectangle(screenWidth/2 - 40, screenHeight/2 +screenHeight/8 - 46, 80,46);
 
-		batch.draw(retourMenu, screenWidth/10, screenHeight/10);		
+		batch.draw(retourMenu, screenWidth/12, screenHeight/12);		
 
-		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
+		if (rectangleMusic.contains(xDoigt, yDoigt) && maintenu) {
 			batch.draw(noteMusiqueBarre, screenWidth/2 - 20, screenHeight/2);
 		} else {
 			batch.draw(noteMusique, screenWidth/2 - 20, screenHeight/2);
 		}
-		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
+		if (rectangleSono.contains(xDoigt, yDoigt) && maintenu) {
 			batch.draw(sonoOff, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);
 		} else {
 			batch.draw(sonoOn, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);

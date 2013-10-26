@@ -8,26 +8,19 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
 
 public class ResultatDuQuiz implements Screen {
 	
-	private float xDoigt, yDoigt;
 	boolean maintenu;
 	
 	private BitmapFont fontmessage1;
 	private SpriteBatch batch;
-	private Texture play;
-	private Texture playPressed;
-	private Texture options;
-	private Texture optionsPressed;
 	private Texture retourMenu;
 	private Texture background;
-	private Texture noteMusique;
-	private Texture noteMusiqueBarre;
-	Rectangle rectangleQuest1;
+	Circle circleBackButton;
 	int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
 	int spaceBetweenQuestAnswers;
@@ -48,7 +41,7 @@ public class ResultatDuQuiz implements Screen {
 
 	@Override
 	public void show() {
-		retourMenu = new Texture(Gdx.files.internal("retour.png"));
+		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
 		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
 		if (Jeu.getDesactiveMusicMenu() == false){
@@ -74,14 +67,6 @@ public class ResultatDuQuiz implements Screen {
 		chocolat10 = new Texture(Gdx.files.internal("pics_chocolat_res_10.jpg"));
 		fontmessage1 = new BitmapFont();
 
-		/********************************** Placement des 3 rectangles ****************************************************************/
-		play = new Texture(Gdx.files.internal("Play.png"));
-		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
-		options = new Texture(Gdx.files.internal("Options.png"));
-		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
-
-
-		/*********************************************************************************************************************************/
 		
 	}
 	
@@ -134,28 +119,24 @@ public class ResultatDuQuiz implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
-				if (rectangleQuest1.contains(x, y) && maintenu){
+				if (circleBackButton.contains(x, y) && maintenu){
 					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
 				}
-				xDoigt = 0;
-				yDoigt = 0;
 				maintenu = false;
 				return false;
 			}
 
 			@Override
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(rectangleQuest1.contains(x, y)){
+				if(circleBackButton.contains(x, y)){
 					if (Jeu.getDesactiveSoundTouchDown() == false)
 						soundTouchDown.play();
 				}
-				if (rectangleQuest1.contains(x, y)){
+				if (circleBackButton.contains(x, y)){
 					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
 				}
-				xDoigt = x;
-				yDoigt = y;
 				maintenu = true;
 				return false;
 			}
@@ -234,9 +215,9 @@ public class ResultatDuQuiz implements Screen {
 	}
 
 	public void afficheBouton() {
-		rectangleQuest1 = new Rectangle(screenWidth/10, screenHeight - screenHeight/10, 40, 80);
+		circleBackButton = new Circle(screenWidth/7 + 5 , screenHeight - screenHeight/8 , 28);
 
-		batch.draw(retourMenu, screenWidth/10, screenHeight/10);		
+		batch.draw(retourMenu, screenWidth/12, screenHeight/12);		
 
 	}
 }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 
@@ -34,11 +35,13 @@ public class Quiz1 implements Screen{
 	private Texture textureRectangle2bis;
 	private Texture textureRectangle3;
 	private Texture textureRectangle3bis;
-	Rectangle rectangleQuest1;
-	Rectangle rectangleQuest2;
-	Rectangle rectangleQuest3;
-	Question quest1;
-	Reponse rep1;
+	private Texture retourMenu;
+	private Rectangle rectangleQuest1;
+	private Rectangle rectangleQuest2;
+	private Rectangle rectangleQuest3;
+	private Circle circleBackButton;
+	private Question quest1;
+	private Reponse rep1;
 	int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
 	int spaceBetweenQuestAnswers;
@@ -58,7 +61,7 @@ public class Quiz1 implements Screen{
 	int appuiRep;	// va me donner le numero de reponse sur lequel l'utilisateur a clicked (look touchDown), va me servir pour touchUp
 	
 	private Sound soundTouchDown;
-	private Sound soundTouchUp;
+	
 	
 	Jeu game;
 
@@ -180,6 +183,7 @@ public class Quiz1 implements Screen{
 		question = new boolean[10];
 		
 		Jeu.numeroQuestionQuiz = 1;
+		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 	}
 	
 	
@@ -683,6 +687,9 @@ public class Quiz1 implements Screen{
 				} else if (rectangleQuest3.contains(x,y)){
 					appuiRep = 3;
 				}
+				if (circleBackButton.contains(x, y)){
+					game.setScreen(new MainMenu(game));
+				}
 				xDoigt = x;
 				yDoigt = y;
 				maintenu = true;
@@ -712,6 +719,10 @@ public class Quiz1 implements Screen{
 	}
 
 	public void questionTouched() {
+		
+		/** bouton retour **/
+		circleBackButton = new Circle( screenWidth/15 + 34, 47, 26);
+		
 		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
 				- positionQuestion1 - 20, screenWidth - 2
 				* ((screenWidth / 10) - 10), 100);
@@ -723,7 +734,9 @@ public class Quiz1 implements Screen{
 				* ((screenWidth / 10) - 10), 100);
 
 		afficheQuestionReponses();
-
+		
+		batch.draw(retourMenu, screenWidth/15, screenHeight - screenHeight/10);
+		
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
 			batch.draw(textureRectangle1bis, 0, 0);
