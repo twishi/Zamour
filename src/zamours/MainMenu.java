@@ -44,6 +44,7 @@ public class MainMenu implements Screen {
 		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
 		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
 		musicMenu.setLooping(true);
+		
 		if (Jeu.getDesactiveMusicMenu() == false){
 			musicMenu.play();
 		}else {

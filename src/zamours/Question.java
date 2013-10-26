@@ -15,12 +15,12 @@ public class Question {
 		case 1:
 			tabQuestions[0] = "1. De tout les hommes qu'elle connait tu es \nle meilleur pour : ";
 			tabQuestions[1] = "1. De tout les hommes que tu connais il est le\n meilleur pour :  ";
-			tabQuestions[2] = "2. La première fois qu'il t'a vue sur une piste\n de danse, il s'est dit : ";
-			tabQuestions[3] = "2. La première fois que tu l'as vue sur une piste\n de danse, tu t'es dit : ";
-			tabQuestions[4] = "3. Elle a déposé dans toute la maison des sous-vêtements\n et t'attends sur le lit";
-			tabQuestions[5] = "3. Tu as déposé dans toute la maison des sous-vêtements\n et tu l'attend sur le lit";
-			tabQuestions[6] = "4. Demain ton chéri et toi avez rendez-vous chez tes parents\n pour un repas en famille";
-			tabQuestions[7] = "4. Demain tu as rendez-vous chez les parents de ta chérie\n pour un repas en famille";
+			tabQuestions[2] = "2. La première fois qu'il t'a vue sur \nune piste de danse, il s'est dit : ";
+			tabQuestions[3] = "2. La première fois que tu l'as vue sur \nune piste de danse, \ntu t'es dit : ";
+			tabQuestions[4] = "3. Elle a déposé dans toute la maison des sous-vêtements \net t'attends sur le lit";
+			tabQuestions[5] = "3. Tu as déposé dans toute la maison des sous-vêtements \net tu l'attend sur le lit";
+			tabQuestions[6] = "4. Demain ton chéri et toi avez rendez-vous \nchez tes parents pour un repas en famille";
+			tabQuestions[7] = "4. Demain tu as rendez-vous chez les parents \nde ta chérie pour un repas en famille";
 			tabQuestions[8] = "5. Voici la question 5 du Quizz 1";
 			tabQuestions[9] = "5. Voici la question 5bis du Quizz 1";
 			tabQuestions[10] = "6. Voici la question 6 du Quizz 1";

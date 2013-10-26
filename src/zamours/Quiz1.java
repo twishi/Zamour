@@ -118,7 +118,8 @@ public class Quiz1 implements Screen{
 				Gdx.files.internal("background_blue_s2.png"));
 		backgroundGirl = new Texture(
 				Gdx.files.internal("background_pink_s2.png"));
-		fontmessage1 = new BitmapFont();
+		
+		fontmessage1 =  new BitmapFont(Gdx.files.internal("font/white.fnt"), false);
 
 		quest1 = new Question(1);
 		rep1 = new Reponse(1);

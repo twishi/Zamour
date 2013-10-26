@@ -5,8 +5,6 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -75,8 +73,6 @@ public class ImageDebut implements Screen{
 		imageDebut=new Texture(Gdx.files.internal("hommefemme.png"));
 		spriteImageDebut = new Sprite(imageDebut);
 		spriteImageDebut.setSize(screenWidth, screenHeight);
-		
-
 		
 		
 		Tween.set(spriteImageDebut, ImageDebutEffet.ALPHA).target(0).start(tweenManager);
