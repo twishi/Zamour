@@ -13,7 +13,6 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Options implements Screen {
 	
-	private float xDoigt, yDoigt;
 	boolean maintenu;
 
 	private SpriteBatch batch;
@@ -70,7 +69,6 @@ public class Options implements Screen {
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 
 
-
 		/****** les boutons pour le son *****/
 		noteMusique = new Texture(Gdx.files.internal("pics_note_musique.png"));
 		noteMusiqueBarre = new Texture(Gdx.files.internal("pics_note_musique_barre.png"));
@@ -102,8 +100,6 @@ public class Options implements Screen {
 						Jeu.setDesactiveSoundTouchDown(true);
 					}
 				}
-				xDoigt = 0;
-				yDoigt = 0;
 				maintenu = false;
 				return false;
 			}
@@ -118,8 +114,6 @@ public class Options implements Screen {
 					game.setScreen(new MainMenu(game));
 					musicMenu.stop();
 				}
-				xDoigt = x;
-				yDoigt = y;
 				maintenu = true;
 				return false;
 			}
@@ -206,12 +200,12 @@ public class Options implements Screen {
 
 		batch.draw(retourMenu, screenWidth/12, screenHeight/12);		
 
-		if (rectangleMusic.contains(xDoigt, yDoigt) && maintenu) {
+		if (Jeu.desactiveMusicMenu) {
 			batch.draw(noteMusiqueBarre, screenWidth/2 - 20, screenHeight/2);
 		} else {
 			batch.draw(noteMusique, screenWidth/2 - 20, screenHeight/2);
 		}
-		if (rectangleSono.contains(xDoigt, yDoigt) && maintenu) {
+		if (Jeu.desactiveSoundTouchDown) {
 			batch.draw(sonoOff, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);
 		} else {
 			batch.draw(sonoOn, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);

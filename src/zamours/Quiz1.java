@@ -695,19 +695,19 @@ public class Quiz1 implements Screen{
 		
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
-			batch.draw(textureRectangle1bis, -5, 432);
+			batch.draw(textureRectangle1bis, -8, 432);
 
 		} else {
 			batch.draw(textureRectangle1, -5,432);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle2bis, -5, 297);
+			batch.draw(textureRectangle2bis, -8, 297);
 		} else {
 			batch.draw(textureRectangle2, -5, 297);
 
 		}
 		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle3bis, -5, 297);
+			batch.draw(textureRectangle3bis, -8, 297);
 		} else {
 			batch.draw(textureRectangle3, -5, 165);
 		}
