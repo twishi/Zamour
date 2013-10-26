@@ -13,7 +13,7 @@ package zamours;
 import com.badlogic.gdx.Game;
 
 
-public class Jeu extends Game/** , Screen */
+public class Jeu extends Game
 {
 	static boolean desactiveMusicMenu = false;
 	static boolean desactiveSoundTouchDown  = false;
@@ -43,7 +43,7 @@ public class Jeu extends Game/** , Screen */
 
 	@Override
 	public void create() {
-		setScreen(new MainMenu(this));
+		setScreen(new ImageDebut(this));
 
 	}
 
