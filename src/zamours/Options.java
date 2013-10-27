@@ -33,9 +33,6 @@ public class Options implements Screen {
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	private Sound soundTouchDown;
-	private Music musicMenu;
-	
 	private Jeu game;
 
 	Options(Jeu game){
@@ -45,15 +42,6 @@ public class Options implements Screen {
 
 	@Override
 	public void show() {
-		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
-		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
-		if (Jeu.getDesactiveMusicMenu() == false){
-			musicMenu.play();
-		}else {
-			musicMenu.stop();
-		}
-		musicMenu.setLooping(true);
-		musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
@@ -86,14 +74,29 @@ public class Options implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
+				maintenu = false;
+				return false;
+			}
+
+			@Override
+			public boolean touchDown(int x, int y, int pointer, int bouton) {
+				if(circleBackButton.contains(x, y) || rectangleMusic.contains(x, y) || rectangleSono.contains(x,y)){
+					if (Jeu.getDesactiveSoundTouchDown() == false)
+						Jeu.soundTouchDown.play();
+				}
+				if (circleBackButton.contains(x, y)){
+					game.setScreen(new MainMenu(game));
+					Jeu.musicMenu.setVolume(0.5f);
+				}
 				/** couper ou remettre la musique **/
 				if (rectangleMusic.contains(x, y)){
 					if(Jeu.getDesactiveMusicMenu()){
 						Jeu.setDesactiveMusicMenu(false);
+						Jeu.musicMenu.setVolume(0.5f);
 					} else {
 						Jeu.setDesactiveMusicMenu(true);
+						Jeu.musicMenu.setVolume(0.f);
 					}
-					musicMenu.stop();
 				}
 				/** couper ou remettre le bruit des touches **/
 				if (rectangleSono.contains(x, y)){
@@ -102,20 +105,6 @@ public class Options implements Screen {
 					} else {
 						Jeu.setDesactiveSoundTouchDown(true);
 					}
-				}
-				maintenu = false;
-				return false;
-			}
-
-			@Override
-			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(circleBackButton.contains(x, y) || rectangleMusic.contains(x, y)){
-					if (Jeu.getDesactiveSoundTouchDown() == false)
-						soundTouchDown.play();
-				}
-				if (circleBackButton.contains(x, y)){
-					game.setScreen(new MainMenu(game));
-					musicMenu.stop();
 				}
 				maintenu = true;
 				return false;

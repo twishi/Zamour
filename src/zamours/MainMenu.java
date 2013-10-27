@@ -30,9 +30,6 @@ public class MainMenu implements Screen {
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	Sound soundTouchDown;
-	Music musicMenu;
-	
 	
 	Jeu game;
 
@@ -43,14 +40,10 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void show() {
-		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
-		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
-		musicMenu.setLooping(true);
-		
 		if (Jeu.getDesactiveMusicMenu() == false){
-			musicMenu.play();
+			Jeu.musicMenu.play();
 		}else {
-			musicMenu.stop();
+			Jeu.musicMenu.stop();
 		}
 		/** musicMenu.setVolume(0.5f); **/ // permet de baisser le volume de la musique du menu
 		Texture.setEnforcePotImages(false);
@@ -89,10 +82,8 @@ public class MainMenu implements Screen {
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
 				if (rectangleQuest1.contains(x, y) && maintenu){
 					game.setScreen(new ChoixQuiz(game));
-					musicMenu.setVolume(0.f);
 				} else if (rectangleQuest2.contains(x, y) && maintenu){
 					game.setScreen(new Options(game));
-					musicMenu.setVolume(0.f);
 				}
 				xDoigt = 0;
 				yDoigt = 0;
@@ -104,12 +95,12 @@ public class MainMenu implements Screen {
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
 				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)){
 					if (Jeu.getDesactiveMusicMenu() == false){
-						musicMenu.setVolume(0.5f);
+						Jeu.musicMenu.setVolume(0.5f);
 					}else {
-						musicMenu.setVolume(0.f);
+						Jeu.musicMenu.setVolume(0.f);
 					}
 					if (Jeu.getDesactiveSoundTouchDown() == false)
-						soundTouchDown.play();
+						Jeu.soundTouchDown.play();
 				}
 				xDoigt = x;
 				yDoigt = y;

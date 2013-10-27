@@ -11,6 +11,9 @@ Dupliquer lignes = Ctrl + Alt + Haut;
 package zamours;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 
 
 public class Jeu extends Game
@@ -19,6 +22,8 @@ public class Jeu extends Game
 	static boolean desactiveSoundTouchDown  = false;
 	static int numeroQuestionQuiz;
 	static int nbRepJuste;
+	static Sound soundTouchDown;
+	static Music musicMenu;
 	
 	public static boolean getDesactiveMusicMenu(){
 		return desactiveMusicMenu;
@@ -44,7 +49,12 @@ public class Jeu extends Game
 	@Override
 	public void create() {
 		setScreen(new ImageDebut(this));
-
+		/** sound/music **/
+		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
+		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
+		musicMenu.setLooping(true);
+		Jeu.musicMenu.setVolume(0.5f);
+		/*****************/
 	}
 
 	@Override

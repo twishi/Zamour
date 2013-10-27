@@ -38,8 +38,6 @@ public class ChoixQuiz implements Screen {
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	private Sound soundTouchDown;
-	private Music musicMenu;
 	
 	/************* obligé pour le changement de screen *************/
 	Jeu game;
@@ -52,15 +50,11 @@ public class ChoixQuiz implements Screen {
 	@Override
 	public void show() {
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
-		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("Sound/sound_click_down.wav"));
-		musicMenu = Gdx.audio.newMusic(Gdx.files.internal("Sound/music_menu.wav"));
-		if (Jeu.getDesactiveMusicMenu() == false){
-			musicMenu.play();
-		}else {
-			musicMenu.stop();
+		if(Jeu.getDesactiveMusicMenu() == false){
+			Jeu.musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
+		} else {
+			Jeu.musicMenu.setVolume(0.f);
 		}
-		musicMenu.setLooping(true);
-		musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
 		
 		Texture.setEnforcePotImages(false);
 		
@@ -95,10 +89,9 @@ public class ChoixQuiz implements Screen {
 			public boolean touchUp(int x, int y, int pointer, int bouton) {
 				if (circleBackButton.contains(x, y) && maintenu){
 					game.setScreen(new MainMenu(game));
-					musicMenu.stop();
 				} else if (rectangleQuiz1.contains(x, y) && maintenu){
 					game.setScreen(new Quiz1(game));
-					musicMenu.stop();
+					Jeu.musicMenu.stop();
 				}
 				xDoigt = 0;
 				yDoigt = 0;
@@ -108,13 +101,13 @@ public class ChoixQuiz implements Screen {
 
 			@Override
 			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(circleBackButton.contains(x, y) || rectangleQuiz1.contains(x, y)){
+				if(circleBackButton.contains(x, y) || rectangleQuiz1.contains(x, y) || rectangleQuiz2.contains(x, y) || rectangleQuiz3.contains(x, y)
+						|| rectangleQuiz4.contains(x, y) || rectangleQuiz5.contains(x, y)){
 					if (Jeu.getDesactiveSoundTouchDown() == false)
-						soundTouchDown.play();
+						Jeu.soundTouchDown.play();
 				}
 				if (circleBackButton.contains(x, y)){
 					game.setScreen(new MainMenu(game));
-					musicMenu.stop();
 				}
 				xDoigt = x;
 				yDoigt = y;
