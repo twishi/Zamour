@@ -22,7 +22,16 @@ public class ChoixQuiz implements Screen {
 	private Texture background;
 	private Sprite spritebackground;
 	private Texture chocolat1;
+	private Texture chocolat2;
+	private Texture chocolat3;
+	private Texture chocolat4;
+	private Texture chocolat5;
+	private Texture resteChocolat;
 	private Rectangle rectangleQuiz1;
+	private Rectangle rectangleQuiz2;
+	private Rectangle rectangleQuiz3;
+	private Rectangle rectangleQuiz4;
+	private Rectangle rectangleQuiz5;
 	private Circle circleBackButton;
 	private int screenWidth, screenHeight;
 	int spaceBetweenAnswers;
@@ -71,6 +80,11 @@ public class ChoixQuiz implements Screen {
 		
 		/****** texture chocolat  *****/
 		chocolat1 = new Texture(Gdx.files.internal("chocolat1.png"));
+		chocolat2 = new Texture(Gdx.files.internal("chocolat2.png"));
+		chocolat3 = new Texture(Gdx.files.internal("chocolat3.png"));
+		chocolat4 = new Texture(Gdx.files.internal("chocolat4.png"));
+		chocolat5 = new Texture(Gdx.files.internal("chocolat5.png"));
+		resteChocolat = new Texture(Gdx.files.internal("restechocolat.png"));
 		
 	}
 
@@ -181,16 +195,40 @@ public class ChoixQuiz implements Screen {
 
 	public void afficheBouton() {
 		circleBackButton = new Circle( screenWidth/15 + 34, 47, 26);
-		rectangleQuiz1 = new Rectangle(screenWidth/2 - 75, screenHeight/2 - 130, 150, 130);
+		
+		rectangleQuiz1 = new Rectangle(20, screenHeight/2 - 80 - 128, 128, 128);
+		rectangleQuiz2 = new Rectangle(170, screenHeight/2 - 80 - 128, 128, 128);
+		rectangleQuiz3 = new Rectangle(320, screenHeight/2 - 80 - 128, 128, 128);
+		rectangleQuiz4 = new Rectangle(95, screenHeight/2 + 80 - 128, 128, 128);
+		rectangleQuiz5 = new Rectangle(245, screenHeight/2 + 80 - 128, 128, 128);
 
 
 		batch.draw(retourMenu, screenWidth/15, screenHeight - screenHeight/10);		
 
 		if (rectangleQuiz1.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(chocolat1, screenWidth/2 - 80, screenHeight/2);
+			batch.draw(resteChocolat, 20, screenHeight/2 + 80);
 		} else {
-			batch.draw(chocolat1, screenWidth/2 - 75, screenHeight/2);
-
+			batch.draw(chocolat1, 20, screenHeight/2 + 80);
+		}
+		if (rectangleQuiz2.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(resteChocolat, 170, screenHeight/2 + 80);
+		} else {
+			batch.draw(chocolat2, 170, screenHeight/2 + 80);
+		}
+		if (rectangleQuiz3.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(resteChocolat, 320, screenHeight/2 + 80);
+		} else {
+			batch.draw(chocolat3, 320, screenHeight/2 + 80);
+		}
+		if (rectangleQuiz4.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(resteChocolat, 95, screenHeight/2 - 80);
+		} else {
+			batch.draw(chocolat4, 95, screenHeight/2 - 80);
+		}
+		if (rectangleQuiz5.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(resteChocolat, 245, screenHeight/2 - 80);
+		} else {
+			batch.draw(chocolat5, 245, screenHeight/2 - 80);
 		}
 	}
 }

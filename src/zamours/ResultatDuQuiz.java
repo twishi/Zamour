@@ -39,7 +39,9 @@ public class ResultatDuQuiz implements Screen {
 	}
 	/***************************************************************/
 	
-	private Texture chocolat10;
+	private Texture chocolatFinal;
+	private Sprite spriteChocolatFinal;
+	
 
 	@Override
 	public void show() {
@@ -67,7 +69,11 @@ public class ResultatDuQuiz implements Screen {
 		spritebackground = new Sprite(background);
 		spritebackground.setSize(screenWidth, screenHeight);
 		
-		chocolat10 = new Texture(Gdx.files.internal("pics_chocolat_res_10.jpg"));
+		chocolatFinal = new Texture(Gdx.files.internal("chocolatfinal.png"));
+		spriteChocolatFinal = new Sprite(chocolatFinal);
+		spriteChocolatFinal.setSize(256, 256);
+		spriteChocolatFinal.setPosition(screenWidth/2 - 128, screenHeight/2 - 128);
+		
 		fontmessage1 = new BitmapFont(Gdx.files.internal("font/white.fnt"), false);
 
 		
@@ -106,12 +112,12 @@ public class ResultatDuQuiz implements Screen {
 			batch.draw(chocolat10, screenWidth/2, screenHeight/2);
 			break;*/
 		case 10:
-			batch.draw(chocolat10, screenWidth/2 - 75, screenHeight/2);
+			spriteChocolatFinal.draw(batch);
 			fontmessage1.drawMultiLine(batch, "Amazing",
 					0, screenHeight/2 + screenHeight/3 - screenHeight/9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, "Felicitations vous vous connaissez sur le bout des doigts,\nc'est un sans faute !",
-					0, screenHeight/3 + screenHeight/8, screenWidth,
+					0, screenHeight/3 , screenWidth,
 					HAlignment.CENTER);
 			break;
 		}
