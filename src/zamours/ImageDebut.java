@@ -30,6 +30,7 @@ public class ImageDebut implements Screen{
 	@Override
 	public void dispose() {
 		batch.dispose();
+		spriteImageDebut.getTexture().dispose();
 	}
 
 	@Override

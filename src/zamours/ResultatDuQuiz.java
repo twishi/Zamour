@@ -107,10 +107,16 @@ public class ResultatDuQuiz implements Screen {
 			break;
 		case 8:
 			batch.draw(chocolat10, screenWidth/2, screenHeight/2);
-			break;
-		case 9:
-			batch.draw(chocolat10, screenWidth/2, screenHeight/2);
 			break;*/
+		case 9:
+			spriteChocolatFinal.draw(batch);
+			fontmessage1.drawMultiLine(batch, "Incredible",
+					0, screenHeight/2 + screenHeight/3 - screenHeight/9, screenWidth,
+					HAlignment.CENTER);
+			fontmessage1.drawMultiLine(batch, "Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+					0, screenHeight/3 , screenWidth,
+					HAlignment.CENTER);
+			break;
 		case 10:
 			spriteChocolatFinal.draw(batch);
 			fontmessage1.drawMultiLine(batch, "Amazing",
