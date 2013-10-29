@@ -1,6 +1,10 @@
 package zamours;
 
 
+import aurelienribon.tweenengine.Timeline;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -9,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class MainMenu implements Screen {
 	private float xDoigt, yDoigt;
@@ -21,6 +26,10 @@ public class MainMenu implements Screen {
 	private Texture optionsPressed;
 	private Texture background;
 	private Sprite spritebackground;
+	private Sprite spritePlay;
+	private Sprite spritePlayPressed;
+	private Sprite spriteOptions;
+	private Sprite spriteOptionsPressed;
 	Rectangle rectangleQuest1;
 	Rectangle rectangleQuest2;
 	int screenWidth, screenHeight;
@@ -28,7 +37,7 @@ public class MainMenu implements Screen {
 	int spaceBetweenQuestAnswers;
 	int positionQuestion1;
 	
-	
+	private TweenManager tweenManager;
 	Jeu game;
 
 	MainMenu(Jeu game){
@@ -61,16 +70,37 @@ public class MainMenu implements Screen {
 
 
 
-		/********************************** Placement des 3 rectangles ****************************************************************/
+		/********************************** Placement des boutons ****************************************************************/
 
 
 		play = new Texture(Gdx.files.internal("Play.png"));
 		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
 		options = new Texture(Gdx.files.internal("Options.png"));
 		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
+		
+		spritePlay = new Sprite(play);
+		spritePlayPressed = new Sprite(playPressed);
+		spriteOptions = new Sprite(options);
+		spriteOptionsPressed = new Sprite(optionsPressed);
+		
+		spritePlay.setPosition(32, 550);
+		spritePlayPressed.setPosition(32, 550);
+		spriteOptions.setPosition(32, 400);
+		spriteOptionsPressed.setPosition(32, 400);
 
 
 		/*********************************************************************************************************************************/
+		/******************************************Effet**********************************************************************************/
+		tweenManager = new TweenManager();
+		Tween.registerAccessor(Actor.class, new ActorAccessor());
+		
+		Timeline.createSequence().beginSequence()
+		.push(Tween.set(spritePlay, ActorAccessor.ALPHA).target(0))
+		.push(Tween.set(spriteOptions, ActorAccessor.ALPHA).target(0))
+		.push(Tween.to(spritePlay, ActorAccessor.ALPHA , 1f).target(1))
+		.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .5f).target(1))
+		.end().start(tweenManager);
+		
 	}
 
 	public void manipulerMenu() {
@@ -150,15 +180,18 @@ public class MainMenu implements Screen {
 	}
 
 	@Override
-	public void render(float arg0) {
+	public void render(float delta) {
 		
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 
+		tweenManager.update(delta);
 		manipulerMenu(); // gestion des input
+		
 		batch.begin();
 		spritebackground.draw(batch);
 		afficheBouton();
+
 		batch.end();
 
 	}
@@ -174,7 +207,7 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -185,15 +218,15 @@ public class MainMenu implements Screen {
 
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
-			batch.draw(playPressed, 32, 550);
+			spritePlayPressed.draw(batch);
 
 		} else {
-			batch.draw(play, 32, 550);
+			spritePlay.draw(batch);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(optionsPressed, 32, 400);
+			spriteOptionsPressed.draw(batch);
 		} else {
-			batch.draw(options, 32, 400);
+			spriteOptions.draw(batch);
 
 		}
 	}
