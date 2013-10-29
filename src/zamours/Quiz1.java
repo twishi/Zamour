@@ -13,63 +13,41 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
+public class Quiz1 implements Screen {
 
-public class Quiz1 implements Screen{
-
-	private float xDoigt, yDoigt;
 	boolean maintenu;
-
 	private SpriteBatch batch;
-	private Texture backgroundBoy;
-	private Texture backgroundGirl;
-	private Sprite spritebackgroundBoy;
-	private Sprite spritebackgroundGirl;
+	private Texture backgroundBoy, backgroundGirl, textureRectangle1,
+			textureRectangle1bis, textureRectangle2, textureRectangle2bis,
+			textureRectangle3, textureRectangle3bis, retourMenu;
+	
+	private Sprite spritebackgroundBoy, spritebackgroundGirl;
 	private BitmapFont fontmessage1;
-	private Texture textureRectangle1;
-	private Texture textureRectangle1bis;
-	private Texture textureRectangle2;
-	private Texture textureRectangle2bis;
-	private Texture textureRectangle3;
-	private Texture textureRectangle3bis;
-	private Texture retourMenu;
-	private Rectangle rectangleQuest1;
-	private Rectangle rectangleQuest2;
-	private Rectangle rectangleQuest3;
+	private Rectangle rectangleQuest1, rectangleQuest2, rectangleQuest3;
 	private Circle circleBackButton;
 	private Question quest1;
 	private Reponse rep1;
-	int screenWidth, screenHeight;
-	int spaceBetweenAnswers;
-	int spaceBetweenQuestAnswers;
-	int positionQuestion1;
-	float transparenceNoClick, transparenceClick;
-
-	int[] tabReponseBoy;
-	int[] tabReponseGirl;
+	int screenWidth, screenHeight, spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1;
+	private float xDoigt, yDoigt;
+	int[] tabReponseBoy, tabReponseGirl;
 	boolean[] question;
-	
-	int i = 0;
-	boolean yo = false;
-	
-	private String pageSex;	// need pour savoir quel tableau remplir dans touchUp
+	private String pageSex; // need pour savoir quel tableau remplir dans touchUp
 	int compteurNombreReponsesBoy = 0;
 	int compteurNombreReponsesGirl = 0;
-	int appuiRep;	// va me donner le numero de reponse sur lequel l'utilisateur a clicked (look touchDown), va me servir pour touchUp
-	
+	int appuiRep; // va me donner le numero de reponse sur lequel l'utilisateur
+					// a clicked (look touchDown), va me servir pour touchUp
+
 	private Sound soundTouchDown;
-	
-	
+
 	private Jeu game;
 
-	Quiz1(Jeu game){
+	Quiz1(Jeu game) {
 		this.game = game;
 	}
-	
-	
 
 	@Override
 	public void dispose() {
-		
+
 	}
 
 	@Override
@@ -79,42 +57,42 @@ public class Quiz1 implements Screen{
 
 	@Override
 	public void pause() {
-		
+
 	}
 
 	@Override
 	public void render(float arg0) {
 		Gdx.gl.glClearColor(0, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		gestionDesEntrees();
+
 		batch.begin();
 		questionTouched();
-
+		gestionDesEntrees();
 		batch.end();
 
 	}
 
 	@Override
 	public void resize(int arg0, int arg1) {
-		
+
 	}
 
 	@Override
 	public void resume() {
-		
+
 	}
 
 	@Override
 	public void show() {
-		soundTouchDown = Gdx.audio.newSound(Gdx.files.internal("sound/sound_click_down.wav"));
+		soundTouchDown = Gdx.audio.newSound(Gdx.files
+				.internal("sound/sound_click_down.wav"));
 		Texture.setEnforcePotImages(false);
-		
+
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		
-		
+
 		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
-		
+
 		batch = new SpriteBatch();
 		/**
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
@@ -127,35 +105,37 @@ public class Quiz1 implements Screen{
 		spritebackgroundGirl = new Sprite(backgroundGirl);
 		spritebackgroundBoy.setSize(screenWidth, screenHeight);
 		spritebackgroundGirl.setSize(screenWidth, screenHeight);
-		
-		fontmessage1 =  new BitmapFont(Gdx.files.internal("font/white.fnt"), false);
+
+		fontmessage1 = new BitmapFont(Gdx.files.internal("font/white.fnt"),
+				false);
 
 		spaceBetweenAnswers = screenHeight / 6;
 		spaceBetweenQuestAnswers = screenHeight / 4;
-		
+
 		quest1 = new Question(1);
 		rep1 = new Reponse(1);
 
 		/********************************** Placement des 3 rectangles ****************************************************************/
 
-
 		textureRectangle1 = new Texture(Gdx.files.internal("reponse.png"));
-		textureRectangle1bis = new Texture(Gdx.files.internal("reponseClick.png"));
+		textureRectangle1bis = new Texture(
+				Gdx.files.internal("reponseClick.png"));
 		textureRectangle2 = new Texture(Gdx.files.internal("reponse.png"));
-		textureRectangle2bis = new Texture(Gdx.files.internal("reponseClick.png"));
+		textureRectangle2bis = new Texture(
+				Gdx.files.internal("reponseClick.png"));
 		textureRectangle3 = new Texture(Gdx.files.internal("reponse.png"));
-		textureRectangle3bis = new Texture(Gdx.files.internal("reponseClick.png"));
+		textureRectangle3bis = new Texture(
+				Gdx.files.internal("reponseClick.png"));
 		/*********************************************************************************************************************************/
 
 		tabReponseBoy = new int[10];
 		tabReponseGirl = new int[10];
 		question = new boolean[10];
-		
+
 		Jeu.numeroQuestionQuiz = 1;
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
+
 	}
-	
-	
 
 	public void afficheQuestionReponses() {
 		switch (Jeu.numeroQuestionQuiz) {
@@ -444,15 +424,15 @@ public class Quiz1 implements Screen{
 		}
 
 	}
-	
-	
+
 	/***************************************/
 	/** renvoi le nombre de reponse juste **/
 	/***************************************/
-	public int compareReponses(){	// attention on renvoie un int
+	public int compareReponses() { // attention on renvoie un int
 		int nbRepJuste = 0;
-		for(int i = 0; i < tabReponseBoy.length; i++){
-			if(tabReponseBoy[i] == tabReponseGirl[i]) nbRepJuste++;
+		for (int i = 0; i < tabReponseBoy.length; i++) {
+			if (tabReponseBoy[i] == tabReponseGirl[i])
+				nbRepJuste++;
 		}
 		Jeu.nbRepJuste = nbRepJuste;
 		return nbRepJuste;
@@ -461,15 +441,275 @@ public class Quiz1 implements Screen{
 	/*******************************************/
 	/** renvoi true si 2 meme rep sinon false **/
 	/*******************************************/
-	public boolean memeRep(){
-		if(tabReponseBoy[compteurNombreReponsesBoy-1] == tabReponseGirl[compteurNombreReponsesGirl-1]){
+	public boolean memeRep() {
+		if (tabReponseBoy[compteurNombreReponsesBoy - 1] == tabReponseGirl[compteurNombreReponsesGirl - 1]) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	// ********************************** Gestion des entrï¿½es
-	// ****************************************/
+	
+	public void clickDown(int x,int y){
+		if (rectangleQuest1.contains(x, y)
+				|| rectangleQuest2.contains(x, y)
+				|| rectangleQuest3.contains(x, y)) {
+			if (Jeu.getDesactiveSoundTouchDown() == false)
+				soundTouchDown.play();
+		}
+		if (rectangleQuest1.contains(x, y)) {
+			appuiRep = 1;
+		} else if (rectangleQuest2.contains(x, y)) {
+			appuiRep = 2;
+		} else if (rectangleQuest3.contains(x, y)) {
+			appuiRep = 3;
+		}
+		if (circleBackButton.contains(x, y)) {
+			game.setScreen(new MainMenu(game));
+		}
+	}
+	
+	public void testRep(int x, int y){
+		/***************/
+		/***** boy *****/
+		/***************/
+		tabReponseBoy[compteurNombreReponsesBoy] = 1;
+		if (rectangleQuest1.contains(x, y) && maintenu
+				&& pageSex.equals("boy") && appuiRep == 1) {
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour le mec) numero : "
+					+ (compteurNombreReponsesBoy + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out.print("numero reponse du mec : "
+					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesBoy++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		} else if (rectangleQuest2.contains(x, y) && maintenu
+				&& pageSex.equals("boy") && appuiRep == 2) {
+			tabReponseBoy[compteurNombreReponsesBoy] = 2;
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour le mec) numero : "
+					+ (compteurNombreReponsesBoy + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out.print("numero reponse du mec : "
+					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesBoy++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		} else if (rectangleQuest3.contains(x, y) && maintenu
+				&& pageSex.equals("boy") && appuiRep == 3) {
+			tabReponseBoy[compteurNombreReponsesBoy] = 3;
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour le mec) numero : "
+					+ (compteurNombreReponsesBoy + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out.print("numero reponse du mec : "
+					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesBoy++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		}
+		/***************/
+		/**** girl *****/
+		/***************/
+		if (rectangleQuest1.contains(x, y) && maintenu
+				&& pageSex.equals("girl") && appuiRep == 1) {
+			tabReponseGirl[compteurNombreReponsesGirl] = 1;
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour la fille) numero : "
+					+ (compteurNombreReponsesGirl + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out
+			.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl]
+							+ "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesGirl++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		} else if (rectangleQuest2.contains(x, y) && maintenu
+				&& pageSex.equals("girl") && appuiRep == 2) {
+			tabReponseGirl[compteurNombreReponsesGirl] = 2;
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour la fille) numero : "
+					+ (compteurNombreReponsesGirl + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out
+			.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl]
+							+ "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesGirl++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		} else if (rectangleQuest3.contains(x, y) && maintenu
+				&& pageSex.equals("girl") && appuiRep == 3) {
+			tabReponseGirl[compteurNombreReponsesGirl] = 3;
+			/**********/
+			/** test **/
+			/**********/
+			System.out.print("question (pour la fille) numero : "
+					+ (compteurNombreReponsesGirl + 1) + "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
+					+ "\t");
+			System.out
+			.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl]
+							+ "\n");
+			/**************/
+			/** fin test **/
+			/**************/
+			compteurNombreReponsesGirl++;
+			if (compteurNombreReponsesBoy == compteurNombreReponsesGirl
+					&& Jeu.numeroQuestionQuiz != 1) {
+				if (memeRep()) { // si ils ont repondu pareil
+					System.out.println("bien joué");
+				} else {
+					System.out.println("loupe");
+				}
+			}
+			Jeu.numeroQuestionQuiz++;
+		}
+		/**********/
+		/** test **/
+		/**********/
+		if (Jeu.quizTermine()) {
+			System.out.println("Fin du quizz ! \n");
+			System.out.println("Affichage reponses boy : ");
+			for (int i = 0; i < tabReponseBoy.length; i++) {
+				System.out.println("Reponse question " + (i + 1)
+						+ " : " + tabReponseBoy[i]);
+			}
+			System.out.println();
+			System.out.println("Affichage reponses girl : ");
+			for (int i = 0; i < tabReponseGirl.length; i++) {
+				System.out.println("Reponse question " + (i + 1)
+						+ " : " + tabReponseGirl[i]);
+			}
+			System.out.println();
+			System.out.println("Le nombre de reponse(s) juste est : "
+					+ compareReponses() + "/10");
+			System.out.println();
+			System.out.println("Le numeroQuestionQuiz est : "
+					+ Jeu.numeroQuestionQuiz++);
+			game.setScreen(new ResultatDuQuiz(game)); // changement de
+			// page,
+			// redirection
+			// vers la
+			// screen
+			// ResultatDuQuiz
+		}
+		/**************/
+		/** fin test **/
+		/**************/
+	}
+	
+	public void questionTouched() {
+		
+		/** bouton retour **/
+		circleBackButton = new Circle(screenWidth / 15 + 34, 47, 26);
+		
+		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
+				- positionQuestion1 - 17, screenWidth - 2
+				* ((screenWidth / 10) - 10), 85);
+		rectangleQuest2 = new Rectangle((screenWidth / 10) - 10, screenHeight
+				- positionQuestion1 + spaceBetweenAnswers - 17, screenWidth - 2
+				* ((screenWidth / 10) - 10), 85);
+		rectangleQuest3 = new Rectangle((screenWidth / 10) - 10, screenHeight
+				- positionQuestion1 + 2 * spaceBetweenAnswers - 17, screenWidth
+				- 2 * ((screenWidth / 10) - 10), 85);
+		
+		afficheQuestionReponses();
+		
+		batch.draw(retourMenu, screenWidth / 15, screenHeight - screenHeight
+				/ 10);
+		
+		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
+			
+			batch.draw(textureRectangle1bis, -8, 432);
+			
+		} else {
+			batch.draw(textureRectangle1, -5, 432);
+		}
+		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(textureRectangle2bis, -8, 297);
+		} else {
+			batch.draw(textureRectangle2, -5, 297);
+			
+		}
+		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
+			batch.draw(textureRectangle3bis, -8, 165);
+		} else {
+			batch.draw(textureRectangle3, -5, 165);
+		}
+	}
+
+
+
+	// ********************************** Gestion des entrees************************************************/
 
 	public void gestionDesEntrees() {
 		Gdx.input.setInputProcessor(new InputProcessor() {
@@ -478,160 +718,10 @@ public class Quiz1 implements Screen{
 
 				return false;
 			}
-			
+
 			@Override
 			public boolean touchUp(int x, int y, int arg2, int arg3) {
-				/***************/
-				/***** boy *****/
-				/***************/
-					tabReponseBoy[compteurNombreReponsesBoy] = 1;
-					if (rectangleQuest1.contains(x, y) && maintenu && pageSex.equals("boy") && appuiRep == 1){
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesBoy++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				} else if (rectangleQuest2.contains(x, y) && maintenu && pageSex.equals("boy") && appuiRep == 2){
-					tabReponseBoy[compteurNombreReponsesBoy] = 2;
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesBoy++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				} else if (rectangleQuest3.contains(x, y) && maintenu && pageSex.equals("boy") && appuiRep == 3) {
-					tabReponseBoy[compteurNombreReponsesBoy] = 3;
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour le mec) numero : " + (compteurNombreReponsesBoy+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse du mec : " + tabReponseBoy[compteurNombreReponsesBoy] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesBoy++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				}
-				/***************/
-				/**** girl *****/
-				/***************/
-				if (rectangleQuest1.contains(x, y) && maintenu && pageSex.equals("girl") && appuiRep == 1){
-					tabReponseGirl[compteurNombreReponsesGirl] = 1;
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesGirl++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				} else if (rectangleQuest2.contains(x, y) && maintenu && pageSex.equals("girl") && appuiRep == 2){
-					tabReponseGirl[compteurNombreReponsesGirl] = 2;
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesGirl++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				} else if (rectangleQuest3.contains(x, y) && maintenu && pageSex.equals("girl") && appuiRep == 3) {
-					tabReponseGirl[compteurNombreReponsesGirl] = 3;
-					/**********/
-					/** test **/
-					/**********/
-					System.out.print("question (pour la fille) numero : " + (compteurNombreReponsesGirl+1) + "\t");
-					System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
-					System.out.print("numero reponse de la fille : " + tabReponseGirl[compteurNombreReponsesGirl] + "\n");
-					/**************/
-					/** fin test **/
-					/**************/
-					compteurNombreReponsesGirl++;
-					if (compteurNombreReponsesBoy == compteurNombreReponsesGirl && Jeu.numeroQuestionQuiz != 1){
-						if (memeRep()){	// si ils ont repondu pareil
-							System.out.println("bien joué");
-						} else {
-							System.out.println("loupe");
-						}
-					}
-					Jeu.numeroQuestionQuiz++;
-				}
-				/**********/
-				/** test **/
-				/**********/
-				if (Jeu.quizTermine()) {
-					System.out.println("Fin du quizz ! \n");
-					System.out.println("Affichage reponses boy : ");
-					for(int i = 0; i < tabReponseBoy.length; i++){
-						System.out.println("Reponse question " + (i+1) +" : " + tabReponseBoy[i]);
-					}
-					System.out.println();
-					System.out.println("Affichage reponses girl : ");
-					for(int i = 0; i < tabReponseGirl.length; i++){
-						System.out.println("Reponse question " + (i+1) +" : " + tabReponseGirl[i]);
-					}
-					System.out.println();
-					System.out.println("Le nombre de reponse(s) juste est : " + compareReponses() + "/10");
-					System.out.println();
-					System.out.println("Le numeroQuestionQuiz est : " + Jeu.numeroQuestionQuiz++);
-					game.setScreen(new ResultatDuQuiz(game));	// changement de page, redirection vers la screen ResultatDuQuiz
-				}
-				/**************/
-				/** fin test **/
-				/**************/
+				testRep(x,y);
 				xDoigt = 0;
 				yDoigt = 0;
 				maintenu = false;
@@ -645,20 +735,7 @@ public class Quiz1 implements Screen{
 
 			@Override
 			public boolean touchDown(int x, int y, int arg2, int arg3) {
-				if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y) || rectangleQuest3.contains(x, y)){
-					if (Jeu.getDesactiveSoundTouchDown() == false)
-						soundTouchDown.play();
-				}
-				if (rectangleQuest1.contains(x,y)){
-					appuiRep = 1;
-				} else if (rectangleQuest2.contains(x,y)){
-					appuiRep = 2;
-				} else if (rectangleQuest3.contains(x,y)){
-					appuiRep = 3;
-				}
-				if (circleBackButton.contains(x, y)){
-					game.setScreen(new MainMenu(game));
-				}
+				clickDown(x,y);
 				xDoigt = x;
 				yDoigt = y;
 				maintenu = true;
@@ -686,43 +763,5 @@ public class Quiz1 implements Screen{
 			}
 		});
 	}
-
-	public void questionTouched() {
-		
-		/** bouton retour **/
-		circleBackButton = new Circle( screenWidth/15 + 34, 47, 26);
-		
-		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 - 17, screenWidth - 2
-				* ((screenWidth / 10) - 10), 85);
-		rectangleQuest2 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + spaceBetweenAnswers - 17, screenWidth - 2
-				* ((screenWidth / 10) - 10), 85);
-		rectangleQuest3 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + 2 * spaceBetweenAnswers - 17, screenWidth - 2
-				* ((screenWidth / 10) - 10), 85);
-
-		afficheQuestionReponses();
-		
-		batch.draw(retourMenu, screenWidth/15, screenHeight - screenHeight/10);
-		
-		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
-
-			batch.draw(textureRectangle1bis, -8, 432);
-
-		} else {
-			batch.draw(textureRectangle1, -5,432);
-		}
-		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle2bis, -8, 297);
-		} else {
-			batch.draw(textureRectangle2, -5, 297);
-
-		}
-		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle3bis, -8, 165);
-		} else {
-			batch.draw(textureRectangle3, -5, 165);
-		}
-	}
 }
+	

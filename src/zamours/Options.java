@@ -15,21 +15,12 @@ public class Options implements Screen {
 	boolean maintenu;
 
 	private SpriteBatch batch;
-	private Texture retourMenu;
-	private Texture background;
+	private Texture background, retourMenu, noteMusique, noteMusiqueBarre, sonoOn, sonoOff;
 	private Sprite spritebackground;
-	private Texture noteMusique;
-	private Texture noteMusiqueBarre;
 	private Circle circleBackButton;
-	private Rectangle rectangleMusic;
-	private Rectangle rectangleSono;
-	private Texture sonoOn;
-	private Texture sonoOff;
+	private Rectangle rectangleMusic, rectangleSono;
 
-	int screenWidth, screenHeight;
-	int spaceBetweenAnswers;
-	int spaceBetweenQuestAnswers;
-	int positionQuestion1;
+	int screenWidth, screenHeight, spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1;
 	
 	private Jeu game;
 
@@ -65,79 +56,6 @@ public class Options implements Screen {
 		sonoOff = new Texture(Gdx.files.internal("pics_sono_off.png"));
 
 		
-	}
-
-	public void manipulerMenu() {
-		Gdx.input.setInputProcessor(new InputProcessor() {
-
-			@Override
-			public boolean touchUp(int x, int y, int pointer, int bouton) {
-				maintenu = false;
-				return false;
-			}
-
-			@Override
-			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(circleBackButton.contains(x, y) || rectangleMusic.contains(x, y) || rectangleSono.contains(x,y)){
-					if (Jeu.getDesactiveSoundTouchDown() == false)
-						Jeu.soundTouchDown.play();
-				}
-				if (circleBackButton.contains(x, y)){
-					game.setScreen(new MainMenu(game));
-					Jeu.musicMenu.setVolume(0.5f);
-				}
-				/** couper ou remettre la musique **/
-				if (rectangleMusic.contains(x, y)){
-					if(Jeu.getDesactiveMusicMenu()){
-						Jeu.setDesactiveMusicMenu(false);
-						Jeu.musicMenu.setVolume(0.5f);
-					} else {
-						Jeu.setDesactiveMusicMenu(true);
-						Jeu.musicMenu.setVolume(0.f);
-					}
-				}
-				/** couper ou remettre le bruit des touches **/
-				if (rectangleSono.contains(x, y)){
-					if(Jeu.getDesactiveSoundTouchDown()){
-						Jeu.setDesactiveSoundTouchDown(false);
-					} else {
-						Jeu.setDesactiveSoundTouchDown(true);
-					}
-				}
-				maintenu = true;
-				return false;
-			}
-
-			@Override
-			public boolean touchDragged(int arg0, int arg1, int arg2) {
-				return false;
-			}
-
-			@Override
-			public boolean scrolled(int arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean mouseMoved(int arg0, int arg1) {
-				return false;
-			}
-
-			@Override
-			public boolean keyUp(int arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean keyTyped(char arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean keyDown(int arg0) {
-				return false;
-			}
-		});
 	}
 
 
@@ -200,5 +118,83 @@ public class Options implements Screen {
 		} else {
 			batch.draw(sonoOn, screenWidth/2 - 20, screenHeight/2 -screenHeight/8);
 		}
+	}
+	
+	public void soundTouchDown(int x, int y){
+		if(circleBackButton.contains(x, y) || rectangleMusic.contains(x, y) || rectangleSono.contains(x,y)){
+			if (Jeu.getDesactiveSoundTouchDown() == false)
+				Jeu.soundTouchDown.play();
+		}
+		if (circleBackButton.contains(x, y)){
+			game.setScreen(new MainMenu(game));
+			Jeu.musicMenu.setVolume(0.5f);
+		}
+		/** couper ou remettre la musique **/
+		if (rectangleMusic.contains(x, y)){
+			if(Jeu.getDesactiveMusicMenu()){
+				Jeu.setDesactiveMusicMenu(false);
+				Jeu.musicMenu.setVolume(0.5f);
+			} else {
+				Jeu.setDesactiveMusicMenu(true);
+				Jeu.musicMenu.setVolume(0.f);
+			}
+		}
+		/** couper ou remettre le bruit des touches **/
+		if (rectangleSono.contains(x, y)){
+			if(Jeu.getDesactiveSoundTouchDown()){
+				Jeu.setDesactiveSoundTouchDown(false);
+			} else {
+				Jeu.setDesactiveSoundTouchDown(true);
+			}
+		}
+	}
+	
+	
+	public void manipulerMenu() {
+		Gdx.input.setInputProcessor(new InputProcessor() {
+
+			@Override
+			public boolean touchUp(int x, int y, int pointer, int bouton) {
+				maintenu = false;
+				return false;
+			}
+
+			@Override
+			public boolean touchDown(int x, int y, int pointer, int bouton) {
+				soundTouchDown(x, y);
+				maintenu = true;
+				return false;
+			}
+
+			@Override
+			public boolean touchDragged(int arg0, int arg1, int arg2) {
+				return false;
+			}
+
+			@Override
+			public boolean scrolled(int arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean mouseMoved(int arg0, int arg1) {
+				return false;
+			}
+
+			@Override
+			public boolean keyUp(int arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean keyTyped(char arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean keyDown(int arg0) {
+				return false;
+			}
+		});
 	}
 }

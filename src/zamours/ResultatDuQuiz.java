@@ -16,17 +16,12 @@ import com.badlogic.gdx.math.Circle;
 public class ResultatDuQuiz implements Screen {
 	
 	private boolean maintenu;
-	
 	private BitmapFont fontmessage1;
 	private SpriteBatch batch;
-	private Texture retourMenu;
-	private Texture background;
-	private Sprite spritebackground;
+	private Texture background, retourMenu, chocolatFinal;
+	private Sprite spritebackground, spriteChocolatFinal;
 	private Circle circleBackButton;
-	private int screenWidth, screenHeight;
-	int spaceBetweenAnswers;
-	int spaceBetweenQuestAnswers;
-	int positionQuestion1;
+	int screenWidth, screenHeight, spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1 ;
 	
 	private Sound soundTouchDown;
 	private Music musicMenu;
@@ -39,10 +34,6 @@ public class ResultatDuQuiz implements Screen {
 	}
 	/***************************************************************/
 	
-	private Texture chocolatFinal;
-	private Sprite spriteChocolatFinal;
-	
-
 	@Override
 	public void show() {
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
@@ -129,6 +120,55 @@ public class ResultatDuQuiz implements Screen {
 		}
 	}
 
+	
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void render(float arg0) {
+		
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+
+		manipulerMenu(); // gestion des input
+		batch.begin();
+		spritebackground.draw(batch);
+		afficheBouton();
+		afficheResultat();
+		batch.end();
+
+	}
+
+	@Override
+	public void resize(int arg0, int arg1) {
+	}
+
+	@Override
+	public void resume() {
+
+	}
+
+	@Override
+	public void hide() {
+		dispose();
+		
+	}
+
+	public void afficheBouton() {
+		circleBackButton = new Circle(screenWidth/7 + 5 , screenHeight - screenHeight/8 , 28);
+
+		batch.draw(retourMenu, screenWidth/12, screenHeight/12);		
+
+	}
+	
 	public void manipulerMenu() {
 		Gdx.input.setInputProcessor(new InputProcessor() {
 
@@ -188,51 +228,4 @@ public class ResultatDuQuiz implements Screen {
 		});
 	}
 
-
-	@Override
-	public void dispose() {
-		batch.dispose();
-	}
-
-	@Override
-	public void pause() {
-
-	}
-
-	@Override
-	public void render(float arg0) {
-		
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-
-		manipulerMenu(); // gestion des input
-		batch.begin();
-		spritebackground.draw(batch);
-		afficheBouton();
-		afficheResultat();
-		batch.end();
-
-	}
-
-	@Override
-	public void resize(int arg0, int arg1) {
-	}
-
-	@Override
-	public void resume() {
-
-	}
-
-	@Override
-	public void hide() {
-		dispose();
-		
-	}
-
-	public void afficheBouton() {
-		circleBackButton = new Circle(screenWidth/7 + 5 , screenHeight - screenHeight/8 , 28);
-
-		batch.draw(retourMenu, screenWidth/12, screenHeight/12);		
-
-	}
 }

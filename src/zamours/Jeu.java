@@ -18,10 +18,8 @@ import com.badlogic.gdx.audio.Sound;
 
 public class Jeu extends Game
 {
-	static boolean desactiveMusicMenu = false;
-	static boolean desactiveSoundTouchDown  = false;
-	static int numeroQuestionQuiz;
-	static int nbRepJuste;
+	static boolean desactiveMusicMenu = false, desactiveSoundTouchDown  = false;
+	static int numeroQuestionQuiz, nbRepJuste;
 	static Sound soundTouchDown;
 	static Music musicMenu;
 	

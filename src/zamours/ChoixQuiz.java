@@ -16,27 +16,12 @@ public class ChoixQuiz implements Screen {
 	boolean maintenu;
 
 	private SpriteBatch batch;
-	private Texture retourMenu;
-	private Texture background;
+	private Texture background, retourMenu, chocolat1, chocolat2, chocolat3, chocolat4, chocolat5, resteChocolat;
 	private Sprite spritebackground;
-	private Texture chocolat1;
-	private Texture chocolat2;
-	private Texture chocolat3;
-	private Texture chocolat4;
-	private Texture chocolat5;
-	private Texture resteChocolat;
-	private Rectangle rectangleQuiz1;
-	private Rectangle rectangleQuiz2;
-	private Rectangle rectangleQuiz3;
-	private Rectangle rectangleQuiz4;
-	private Rectangle rectangleQuiz5;
+	private Rectangle rectangleQuiz1, rectangleQuiz2, rectangleQuiz3, rectangleQuiz4, rectangleQuiz5;
 	private Circle circleBackButton;
-	private int screenWidth, screenHeight;
-	int spaceBetweenAnswers;
-	int spaceBetweenQuestAnswers;
-	int positionQuestion1;
-	
-	
+	int spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1, screenWidth, screenHeight;
+
 	/************* obligé pour le changement de screen *************/
 	Jeu game;
 
@@ -47,7 +32,6 @@ public class ChoixQuiz implements Screen {
 
 	@Override
 	public void show() {
-		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 		if(Jeu.getDesactiveMusicMenu() == false){
 			Jeu.musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
 		} else {
@@ -63,6 +47,7 @@ public class ChoixQuiz implements Screen {
 		spaceBetweenQuestAnswers = screenHeight / 4;
 		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
 		batch = new SpriteBatch();
+		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
 
 		background = new Texture(
 				Gdx.files.internal("background_choix_quiz_s2.png"));
@@ -80,70 +65,7 @@ public class ChoixQuiz implements Screen {
 		
 	}
 
-	public void manipulerMenu() {
-		Gdx.input.setInputProcessor(new InputProcessor() {
-
-			@Override
-			public boolean touchUp(int x, int y, int pointer, int bouton) {
-				if (circleBackButton.contains(x, y) && maintenu){
-					game.setScreen(new MainMenu(game));
-				} else if (rectangleQuiz1.contains(x, y) && maintenu){
-					game.setScreen(new Quiz1(game));
-					Jeu.musicMenu.stop();
-				}
-				xDoigt = 0;
-				yDoigt = 0;
-				maintenu = false;
-				return false;
-			}
-
-			@Override
-			public boolean touchDown(int x, int y, int pointer, int bouton) {
-				if(circleBackButton.contains(x, y) || rectangleQuiz1.contains(x, y) || rectangleQuiz2.contains(x, y) || rectangleQuiz3.contains(x, y)
-						|| rectangleQuiz4.contains(x, y) || rectangleQuiz5.contains(x, y)){
-					if (Jeu.getDesactiveSoundTouchDown() == false)
-						Jeu.soundTouchDown.play();
-				}
-				if (circleBackButton.contains(x, y)){
-					game.setScreen(new MainMenu(game));
-				}
-				xDoigt = x;
-				yDoigt = y;
-				maintenu = true;
-				return false;
-			}
-
-			@Override
-			public boolean touchDragged(int arg0, int arg1, int arg2) {
-				return false;
-			}
-
-			@Override
-			public boolean scrolled(int arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean mouseMoved(int arg0, int arg1) {
-				return false;
-			}
-
-			@Override
-			public boolean keyUp(int arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean keyTyped(char arg0) {
-				return false;
-			}
-
-			@Override
-			public boolean keyDown(int arg0) {
-				return false;
-			}
-		});
-	}
+	
 
 
 	@Override
@@ -222,5 +144,72 @@ public class ChoixQuiz implements Screen {
 		} else {
 			batch.draw(chocolat5, 245, screenHeight/2 - 80);
 		}
+	}
+	
+	public void screenTouchUp(int x, int y){
+		if (rectangleQuiz1.contains(x, y) && maintenu){
+			game.setScreen(new Quiz1(game));
+			Jeu.musicMenu.stop();
+		}
+	}
+	
+	public void manipulerMenu() {
+		Gdx.input.setInputProcessor(new InputProcessor() {
+
+			@Override
+			public boolean touchUp(int x, int y, int pointer, int bouton) {
+				screenTouchUp(x, y);
+				xDoigt = 0;
+				yDoigt = 0;
+				maintenu = false;
+				return false;
+			}
+
+			@Override
+			public boolean touchDown(int x, int y, int pointer, int bouton) {
+				if(circleBackButton.contains(x, y) || rectangleQuiz1.contains(x, y) || rectangleQuiz2.contains(x, y) || rectangleQuiz3.contains(x, y)
+						|| rectangleQuiz4.contains(x, y) || rectangleQuiz5.contains(x, y)){
+					if (Jeu.getDesactiveSoundTouchDown() == false)
+						Jeu.soundTouchDown.play();
+				}
+				if (circleBackButton.contains(x, y)){
+					game.setScreen(new MainMenu(game));
+				}
+				xDoigt = x;
+				yDoigt = y;
+				maintenu = true;
+				return false;
+			}
+
+			@Override
+			public boolean touchDragged(int arg0, int arg1, int arg2) {
+				return false;
+			}
+
+			@Override
+			public boolean scrolled(int arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean mouseMoved(int arg0, int arg1) {
+				return false;
+			}
+
+			@Override
+			public boolean keyUp(int arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean keyTyped(char arg0) {
+				return false;
+			}
+
+			@Override
+			public boolean keyDown(int arg0) {
+				return false;
+			}
+		});
 	}
 }
