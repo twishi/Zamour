@@ -35,7 +35,7 @@ public class ImageDebut implements Screen{
 
 	@Override
 	public void hide() {
-		
+		dispose();
 	}
 
 	@Override
@@ -48,12 +48,11 @@ public class ImageDebut implements Screen{
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		
-		tweenManager.update(delta);
-		
 		batch.begin();
 		spriteImageDebut.draw(batch);
 		batch.end();
 		
+		tweenManager.update(delta);
 	}
 
 	@Override

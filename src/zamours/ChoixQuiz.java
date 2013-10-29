@@ -181,6 +181,7 @@ public class ChoixQuiz implements Screen {
 
 	@Override
 	public void hide() {
+		dispose();
 		
 	}
 

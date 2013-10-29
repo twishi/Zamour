@@ -185,14 +185,14 @@ public class MainMenu implements Screen {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 
-		tweenManager.update(delta);
 		manipulerMenu(); // gestion des input
 		
 		batch.begin();
 		spritebackground.draw(batch);
 		afficheBouton();
-
 		batch.end();
+		
+		tweenManager.update(delta);
 
 	}
 
@@ -208,7 +208,7 @@ public class MainMenu implements Screen {
 	@Override
 	public void hide() {
 
-		
+		dispose();
 	}
 
 	public void afficheBouton() {
