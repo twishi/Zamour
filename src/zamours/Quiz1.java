@@ -773,6 +773,7 @@ public class Quiz1 implements Screen {
 			textureRectangle2bis.dispose();
 			textureRectangle3bis.dispose();
 			
+			
 			Timer.schedule(new Task(){
 			    @Override
 			    public void run() {
