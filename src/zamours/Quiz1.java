@@ -765,6 +765,13 @@ public class Quiz1 implements Screen {
 			System.out.println("Le numeroQuestionQuiz est : "
 					+ Jeu.numeroQuestionQuiz++);
 
+			textureRectangle1.dispose();
+			textureRectangle2.dispose();
+			textureRectangle3.dispose();
+			textureRectangle1bis.dispose();
+			textureRectangle2bis.dispose();
+			textureRectangle3bis.dispose();
+			
 			Timer.schedule(new Task(){
 			    @Override
 			    public void run() {
@@ -836,7 +843,9 @@ public class Quiz1 implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int arg2, int arg3) {
-				testRep(x, y);
+				if (Jeu.numeroQuestionQuiz <= 20){
+					testRep(x, y);
+				}
 				xDoigt = 0;
 				yDoigt = 0;
 				maintenu = false;
@@ -850,7 +859,9 @@ public class Quiz1 implements Screen {
 
 			@Override
 			public boolean touchDown(int x, int y, int arg2, int arg3) {
-				clickDown(x, y);
+				if (Jeu.numeroQuestionQuiz <= 20){
+					clickDown(x, y);				
+				}
 				xDoigt = x;
 				yDoigt = y;
 				maintenu = true;
