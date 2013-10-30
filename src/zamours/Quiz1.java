@@ -19,7 +19,7 @@ public class Quiz1 implements Screen {
 
 	boolean maintenu;
 	private SpriteBatch batch;
-	private Texture backgroundBoy, backgroundGirl, textureRectangle1,
+	private Texture background, backgroundBoy, backgroundGirl, textureRectangle1,
 			textureRectangle1bis, textureRectangle2, textureRectangle2bis,
 			textureRectangle3, textureRectangle3bis, retourMenu, chocolat,
 			resteChocolat;
@@ -39,7 +39,7 @@ public class Quiz1 implements Screen {
 	private Reponse rep1;
 	int screenWidth, screenHeight, spaceBetweenAnswers,
 			spaceBetweenQuestAnswers, positionQuestion1;
-	private float xDoigt, yDoigt,delay = 2; // secondes a attendre avant apparition resultatquiz;
+	private float xDoigt, yDoigt,delay = 0.5f; // secondes a attendre avant apparition resultatquiz;
 	int[] tabReponseBoy, tabReponseGirl;
 	boolean[] reponse;
 	private String pageSex; // need pour savoir quel tableau remplir dans
@@ -72,6 +72,7 @@ public class Quiz1 implements Screen {
 		/**
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
+		background = new Texture(Gdx.files.internal("background_main_menu_s2.png"));
 		backgroundBoy = new Texture(
 				Gdx.files.internal("background_blue_s2.png"));
 		backgroundGirl = new Texture(
@@ -202,7 +203,7 @@ public class Quiz1 implements Screen {
 
 		gestionDesEntrees();
 		batch.begin();
-		batch.draw(backgroundBoy, 0, 0);
+		batch.draw(background, 0, 0);
 		questionTouched();
 		if(reponse[0]){
 			spriteChocolat1.draw(batch);
@@ -764,7 +765,7 @@ public class Quiz1 implements Screen {
 			System.out.println();
 			System.out.println("Le numeroQuestionQuiz est : "
 					+ Jeu.numeroQuestionQuiz++);
-
+			
 			textureRectangle1.dispose();
 			textureRectangle2.dispose();
 			textureRectangle3.dispose();
