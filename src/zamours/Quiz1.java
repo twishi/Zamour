@@ -72,7 +72,7 @@ public class Quiz1 implements Screen {
 		/**
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
-		background = new Texture(Gdx.files.internal("background_main_menu_s2.png"));
+		background = new Texture(Gdx.files.internal("background_options_s2.png"));
 		backgroundBoy = new Texture(
 				Gdx.files.internal("background_blue_s2.png"));
 		backgroundGirl = new Texture(
@@ -112,9 +112,9 @@ public class Quiz1 implements Screen {
 
 		/***************************************** Affichage coeur ou reste en fonction de la rep **************************************/
 		reponse = new boolean[10];
-//		for(int i=0; i < reponse.length; i++){
-//			reponse[i] = false;
-//		}
+		for(int i=0; i < reponse.length; i++){
+			reponse[i] = false;
+		}
 		
 		chocolat = new Texture(Gdx.files.internal("chocolat1.png"));
 		resteChocolat = new Texture(Gdx.files.internal("resteChocolat.png"));
