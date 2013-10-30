@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class Quiz1 implements Screen {
 
@@ -19,19 +21,29 @@ public class Quiz1 implements Screen {
 	private SpriteBatch batch;
 	private Texture backgroundBoy, backgroundGirl, textureRectangle1,
 			textureRectangle1bis, textureRectangle2, textureRectangle2bis,
-			textureRectangle3, textureRectangle3bis, retourMenu;
-	
-	private Sprite spritebackgroundBoy, spritebackgroundGirl;
+			textureRectangle3, textureRectangle3bis, retourMenu, chocolat,
+			resteChocolat;
+
+	private Sprite spritebackgroundBoy, spritebackgroundGirl, spriteChocolat1,
+			spriteChocolat2, spriteChocolat3, spriteChocolat4, spriteChocolat5,
+			spriteChocolat6, spriteChocolat7, spriteChocolat8, spriteChocolat9,
+			spriteChocolat10, spriteResteChocolat1, spriteResteChocolat2,
+			spriteResteChocolat3, spriteResteChocolat4, spriteResteChocolat5,
+			spriteResteChocolat6, spriteResteChocolat7, spriteResteChocolat8,
+			spriteResteChocolat9, spriteResteChocolat10;
+
 	private BitmapFont fontmessage1;
 	private Rectangle rectangleQuest1, rectangleQuest2, rectangleQuest3;
 	private Circle circleBackButton;
 	private Question quest1;
 	private Reponse rep1;
-	int screenWidth, screenHeight, spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1;
-	private float xDoigt, yDoigt;
+	int screenWidth, screenHeight, spaceBetweenAnswers,
+			spaceBetweenQuestAnswers, positionQuestion1;
+	private float xDoigt, yDoigt,delay = 2; // secondes a attendre avant apparition resultatquiz;
 	int[] tabReponseBoy, tabReponseGirl;
-	boolean[] question;
-	private String pageSex; // need pour savoir quel tableau remplir dans touchUp
+	boolean[] reponse;
+	private String pageSex; // need pour savoir quel tableau remplir dans
+							// touchUp
 	int compteurNombreReponsesBoy = 0;
 	int compteurNombreReponsesGirl = 0;
 	int appuiRep; // va me donner le numero de reponse sur lequel l'utilisateur
@@ -43,43 +55,6 @@ public class Quiz1 implements Screen {
 
 	Quiz1(Jeu game) {
 		this.game = game;
-	}
-
-	@Override
-	public void dispose() {
-
-	}
-
-	@Override
-	public void hide() {
-		dispose();
-	}
-
-	@Override
-	public void pause() {
-
-	}
-
-	@Override
-	public void render(float arg0) {
-		Gdx.gl.glClearColor(0, 1, 1, 1);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
-		batch.begin();
-		questionTouched();
-		gestionDesEntrees();
-		batch.end();
-
-	}
-
-	@Override
-	public void resize(int arg0, int arg1) {
-
-	}
-
-	@Override
-	public void resume() {
-
 	}
 
 	@Override
@@ -130,10 +105,156 @@ public class Quiz1 implements Screen {
 
 		tabReponseBoy = new int[10];
 		tabReponseGirl = new int[10];
-		question = new boolean[10];
 
 		Jeu.numeroQuestionQuiz = 1;
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
+
+		/***************************************** Affichage coeur ou reste en fonction de la rep **************************************/
+		reponse = new boolean[10];
+//		for(int i=0; i < reponse.length; i++){
+//			reponse[i] = false;
+//		}
+		
+		chocolat = new Texture(Gdx.files.internal("chocolat1.png"));
+		resteChocolat = new Texture(Gdx.files.internal("resteChocolat.png"));
+		spriteChocolat1 = new Sprite(chocolat);
+		spriteChocolat2 = new Sprite(chocolat);
+		spriteChocolat3 = new Sprite(chocolat);
+		spriteChocolat4 = new Sprite(chocolat);
+		spriteChocolat5 = new Sprite(chocolat);
+		spriteChocolat6 = new Sprite(chocolat);
+		spriteChocolat7 = new Sprite(chocolat);
+		spriteChocolat8 = new Sprite(chocolat);
+		spriteChocolat9 = new Sprite(chocolat);
+		spriteChocolat10 = new Sprite(chocolat);
+		spriteResteChocolat1 = new Sprite(resteChocolat);
+		spriteResteChocolat2 = new Sprite(resteChocolat);
+		spriteResteChocolat3 = new Sprite(resteChocolat);
+		spriteResteChocolat4 = new Sprite(resteChocolat);
+		spriteResteChocolat5 = new Sprite(resteChocolat);
+		spriteResteChocolat6 = new Sprite(resteChocolat);
+		spriteResteChocolat7 = new Sprite(resteChocolat);
+		spriteResteChocolat8 = new Sprite(resteChocolat);
+		spriteResteChocolat9 = new Sprite(resteChocolat);
+		spriteResteChocolat10 = new Sprite(resteChocolat);
+		spriteChocolat1.setSize(32, 32);
+		spriteChocolat1.setPosition(30, 100);
+		spriteChocolat2.setSize(32, 32);
+		spriteChocolat2.setPosition(70, 100);
+		spriteChocolat3.setSize(32, 32);
+		spriteChocolat3.setPosition(110, 100);
+		spriteChocolat4.setSize(32, 32);
+		spriteChocolat4.setPosition(150, 100);
+		spriteChocolat5.setSize(32, 32);
+		spriteChocolat5.setPosition(190, 100);
+		spriteChocolat6.setSize(32, 32);
+		spriteChocolat6.setPosition(230, 100);
+		spriteChocolat7.setSize(32, 32);
+		spriteChocolat7.setPosition(270, 100);
+		spriteChocolat8.setSize(32, 32);
+		spriteChocolat8.setPosition(310, 100);
+		spriteChocolat9.setSize(32, 32);
+		spriteChocolat9.setPosition(350, 100);
+		spriteChocolat10.setSize(32, 32);
+		spriteChocolat10.setPosition(390, 100);
+		spriteResteChocolat1.setSize(32, 32);
+		spriteResteChocolat1.setPosition(30, 100);
+		spriteResteChocolat2.setSize(32, 32);
+		spriteResteChocolat2.setPosition(70, 100);
+		spriteResteChocolat3.setSize(32, 32);
+		spriteResteChocolat3.setPosition(110, 100);
+		spriteResteChocolat4.setSize(32, 32);
+		spriteResteChocolat4.setPosition(150, 100);
+		spriteResteChocolat5.setSize(32, 32);
+		spriteResteChocolat5.setPosition(190, 100);
+		spriteResteChocolat6.setSize(32, 32);
+		spriteResteChocolat6.setPosition(230, 100);
+		spriteResteChocolat7.setSize(32, 32);
+		spriteResteChocolat7.setPosition(270, 100);
+		spriteResteChocolat8.setSize(32, 32);
+		spriteResteChocolat8.setPosition(310, 100);
+		spriteResteChocolat9.setSize(32, 32);
+		spriteResteChocolat9.setPosition(350, 100);
+		spriteResteChocolat10.setSize(32, 32);
+		spriteResteChocolat10.setPosition(390, 100);
+
+	}
+
+	@Override
+	public void dispose() {
+
+	}
+
+	@Override
+	public void hide() {
+		dispose();
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void render(float arg0) {
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+
+		gestionDesEntrees();
+		batch.begin();
+		batch.draw(backgroundBoy, 0, 0);
+		questionTouched();
+		if(reponse[0]){
+			spriteChocolat1.draw(batch);
+		}
+		else  spriteResteChocolat1.draw(batch);
+		if(reponse[1]){
+			spriteChocolat2.draw(batch);
+		}
+		else  spriteResteChocolat2.draw(batch);
+		if(reponse[2]){
+			spriteChocolat3.draw(batch);
+		}
+		else  spriteResteChocolat3.draw(batch);
+		if(reponse[3]){
+			spriteChocolat4.draw(batch);
+		}
+		else  spriteResteChocolat4.draw(batch);
+		if(reponse[4]){
+			spriteChocolat5.draw(batch);
+		}
+		else  spriteResteChocolat5.draw(batch);
+		if(reponse[5]){
+			spriteChocolat6.draw(batch);
+		}
+		else  spriteResteChocolat6.draw(batch);
+		if(reponse[6]){
+			spriteChocolat7.draw(batch);
+		}
+		else  spriteResteChocolat7.draw(batch);
+		if(reponse[7]){
+			spriteChocolat8.draw(batch);
+		}
+		else  spriteResteChocolat8.draw(batch);
+		if(reponse[8]){
+			spriteChocolat9.draw(batch);
+		}
+		else  spriteResteChocolat9.draw(batch);
+		if(reponse[9]){
+			spriteChocolat10.draw(batch);
+		}
+		else  spriteResteChocolat10.draw(batch);
+		batch.end();
+
+	}
+
+	@Override
+	public void resize(int arg0, int arg1) {
+
+	}
+
+	@Override
+	public void resume() {
 
 	}
 
@@ -443,15 +564,15 @@ public class Quiz1 implements Screen {
 	/*******************************************/
 	public boolean memeRep() {
 		if (tabReponseBoy[compteurNombreReponsesBoy - 1] == tabReponseGirl[compteurNombreReponsesGirl - 1]) {
+			reponse[compteurNombreReponsesBoy - 1] = true;
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public void clickDown(int x,int y){
-		if (rectangleQuest1.contains(x, y)
-				|| rectangleQuest2.contains(x, y)
+
+	public void clickDown(int x, int y) {
+		if (rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)
 				|| rectangleQuest3.contains(x, y)) {
 			if (Jeu.getDesactiveSoundTouchDown() == false)
 				soundTouchDown.play();
@@ -467,21 +588,20 @@ public class Quiz1 implements Screen {
 			game.setScreen(new MainMenu(game));
 		}
 	}
-	
-	public void testRep(int x, int y){
+
+	public void testRep(int x, int y) {
 		/***************/
 		/***** boy *****/
 		/***************/
 		tabReponseBoy[compteurNombreReponsesBoy] = 1;
-		if (rectangleQuest1.contains(x, y) && maintenu
-				&& pageSex.equals("boy") && appuiRep == 1) {
+		if (rectangleQuest1.contains(x, y) && maintenu && pageSex.equals("boy")
+				&& appuiRep == 1) {
 			/**********/
 			/** test **/
 			/**********/
 			System.out.print("question (pour le mec) numero : "
 					+ (compteurNombreReponsesBoy + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 			System.out.print("numero reponse du mec : "
 					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 			/**************/
@@ -505,8 +625,7 @@ public class Quiz1 implements Screen {
 			/**********/
 			System.out.print("question (pour le mec) numero : "
 					+ (compteurNombreReponsesBoy + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 			System.out.print("numero reponse du mec : "
 					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 			/**************/
@@ -530,8 +649,7 @@ public class Quiz1 implements Screen {
 			/**********/
 			System.out.print("question (pour le mec) numero : "
 					+ (compteurNombreReponsesBoy + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
 			System.out.print("numero reponse du mec : "
 					+ tabReponseBoy[compteurNombreReponsesBoy] + "\n");
 			/**************/
@@ -559,12 +677,9 @@ public class Quiz1 implements Screen {
 			/**********/
 			System.out.print("question (pour la fille) numero : "
 					+ (compteurNombreReponsesGirl + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
-			System.out
-			.print("numero reponse de la fille : "
-					+ tabReponseGirl[compteurNombreReponsesGirl]
-							+ "\n");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
+			System.out.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 			/**************/
 			/** fin test **/
 			/**************/
@@ -586,12 +701,9 @@ public class Quiz1 implements Screen {
 			/**********/
 			System.out.print("question (pour la fille) numero : "
 					+ (compteurNombreReponsesGirl + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
-			System.out
-			.print("numero reponse de la fille : "
-					+ tabReponseGirl[compteurNombreReponsesGirl]
-							+ "\n");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
+			System.out.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 			/**************/
 			/** fin test **/
 			/**************/
@@ -613,12 +725,9 @@ public class Quiz1 implements Screen {
 			/**********/
 			System.out.print("question (pour la fille) numero : "
 					+ (compteurNombreReponsesGirl + 1) + "\t");
-			System.out.print("compteur : " + Jeu.numeroQuestionQuiz
-					+ "\t");
-			System.out
-			.print("numero reponse de la fille : "
-					+ tabReponseGirl[compteurNombreReponsesGirl]
-							+ "\n");
+			System.out.print("compteur : " + Jeu.numeroQuestionQuiz + "\t");
+			System.out.print("numero reponse de la fille : "
+					+ tabReponseGirl[compteurNombreReponsesGirl] + "\n");
 			/**************/
 			/** fin test **/
 			/**************/
@@ -640,14 +749,14 @@ public class Quiz1 implements Screen {
 			System.out.println("Fin du quizz ! \n");
 			System.out.println("Affichage reponses boy : ");
 			for (int i = 0; i < tabReponseBoy.length; i++) {
-				System.out.println("Reponse question " + (i + 1)
-						+ " : " + tabReponseBoy[i]);
+				System.out.println("Reponse question " + (i + 1) + " : "
+						+ tabReponseBoy[i]);
 			}
 			System.out.println();
 			System.out.println("Affichage reponses girl : ");
 			for (int i = 0; i < tabReponseGirl.length; i++) {
-				System.out.println("Reponse question " + (i + 1)
-						+ " : " + tabReponseGirl[i]);
+				System.out.println("Reponse question " + (i + 1) + " : "
+						+ tabReponseGirl[i]);
 			}
 			System.out.println();
 			System.out.println("Le nombre de reponse(s) juste est : "
@@ -655,7 +764,14 @@ public class Quiz1 implements Screen {
 			System.out.println();
 			System.out.println("Le numeroQuestionQuiz est : "
 					+ Jeu.numeroQuestionQuiz++);
-			game.setScreen(new ResultatDuQuiz(game)); // changement de
+
+			Timer.schedule(new Task(){
+			    @Override
+			    public void run() {
+			    	game.setScreen(new ResultatDuQuiz(game)); // changement de
+			    }
+			}, delay);
+			
 			// page,
 			// redirection
 			// vers la
@@ -666,12 +782,12 @@ public class Quiz1 implements Screen {
 		/** fin test **/
 		/**************/
 	}
-	
+
 	public void questionTouched() {
-		
+
 		/** bouton retour **/
 		circleBackButton = new Circle(screenWidth / 15 + 34, 47, 26);
-		
+
 		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
 				- positionQuestion1 - 17, screenWidth - 2
 				* ((screenWidth / 10) - 10), 85);
@@ -681,16 +797,16 @@ public class Quiz1 implements Screen {
 		rectangleQuest3 = new Rectangle((screenWidth / 10) - 10, screenHeight
 				- positionQuestion1 + 2 * spaceBetweenAnswers - 17, screenWidth
 				- 2 * ((screenWidth / 10) - 10), 85);
-		
+
 		afficheQuestionReponses();
-		
+
 		batch.draw(retourMenu, screenWidth / 15, screenHeight - screenHeight
 				/ 10);
-		
+
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
-			
+
 			batch.draw(textureRectangle1bis, -8, 432);
-			
+
 		} else {
 			batch.draw(textureRectangle1, -5, 432);
 		}
@@ -698,7 +814,7 @@ public class Quiz1 implements Screen {
 			batch.draw(textureRectangle2bis, -8, 297);
 		} else {
 			batch.draw(textureRectangle2, -5, 297);
-			
+
 		}
 		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
 			batch.draw(textureRectangle3bis, -8, 165);
@@ -707,9 +823,8 @@ public class Quiz1 implements Screen {
 		}
 	}
 
-
-
-	// ********************************** Gestion des entrees************************************************/
+	// ********************************** Gestion des
+	// entrees************************************************/
 
 	public void gestionDesEntrees() {
 		Gdx.input.setInputProcessor(new InputProcessor() {
@@ -721,7 +836,7 @@ public class Quiz1 implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int arg2, int arg3) {
-				testRep(x,y);
+				testRep(x, y);
 				xDoigt = 0;
 				yDoigt = 0;
 				maintenu = false;
@@ -735,7 +850,7 @@ public class Quiz1 implements Screen {
 
 			@Override
 			public boolean touchDown(int x, int y, int arg2, int arg3) {
-				clickDown(x,y);
+				clickDown(x, y);
 				xDoigt = x;
 				yDoigt = y;
 				maintenu = true;
@@ -764,4 +879,3 @@ public class Quiz1 implements Screen {
 		});
 	}
 }
-	
