@@ -116,7 +116,7 @@ public class Quiz1 implements Screen {
 			reponse[i] = false;
 		}
 		
-		chocolat = new Texture(Gdx.files.internal("chocolat1.png"));
+		chocolat = new Texture(Gdx.files.internal("bonne_rep.png"));
 		resteChocolat = new Texture(Gdx.files.internal("resteChocolat.png"));
 		spriteChocolat1 = new Sprite(chocolat);
 		spriteChocolat2 = new Sprite(chocolat);

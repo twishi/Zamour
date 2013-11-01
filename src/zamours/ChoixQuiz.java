@@ -56,10 +56,10 @@ public class ChoixQuiz implements Screen {
 
 		
 		/****** texture chocolat  *****/
-		chocolat1 = new Texture(Gdx.files.internal("chocolat1.png"));
-		chocolat2 = new Texture(Gdx.files.internal("chocolat2.png"));
-		chocolat3 = new Texture(Gdx.files.internal("chocolat3.png"));
-		chocolat4 = new Texture(Gdx.files.internal("chocolat4.png"));
+		chocolat1 = new Texture(Gdx.files.internal("Quiz_1.png"));
+		chocolat2 = new Texture(Gdx.files.internal("Quiz_2.png"));
+		chocolat3 = new Texture(Gdx.files.internal("Quiz_3.png"));
+		chocolat4 = new Texture(Gdx.files.internal("Quiz_4.png"));
 		chocolat5 = new Texture(Gdx.files.internal("chocolat5.png"));
 		resteChocolat = new Texture(Gdx.files.internal("restechocolat.png"));
 		
