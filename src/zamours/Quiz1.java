@@ -577,7 +577,7 @@ public class Quiz1 implements Screen {
 
 	public void clickDown(int x, int y) {
 		if (rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)
-				|| rectangleQuest3.contains(x, y)) {
+				|| rectangleQuest3.contains(x, y) || circleBackButton.contains(x,y)) {
 			if (Jeu.getDesactiveSoundTouchDown() == false)
 				soundTouchDown.play();
 		}

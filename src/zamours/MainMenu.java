@@ -81,7 +81,7 @@ public class MainMenu implements Screen {
 		.push(Tween.set(spritePlay, ActorAccessor.ALPHA).target(0))
 		.push(Tween.set(spriteOptions, ActorAccessor.ALPHA).target(0))
 		.push(Tween.to(spritePlay, ActorAccessor.ALPHA , .6f).target(1))
-		.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .3f).target(1))
+		.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .6f).target(1))
 		.end().start(tweenManager);
 		/********************************************************************************************************************************/
 	}
