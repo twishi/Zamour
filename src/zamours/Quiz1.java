@@ -117,7 +117,7 @@ public class Quiz1 implements Screen {
 		}
 		
 		chocolat = new Texture(Gdx.files.internal("bonne_rep.png"));
-		resteChocolat = new Texture(Gdx.files.internal("resteChocolat.png"));
+		resteChocolat = new Texture(Gdx.files.internal("miete.png"));
 		spriteChocolat1 = new Sprite(chocolat);
 		spriteChocolat2 = new Sprite(chocolat);
 		spriteChocolat3 = new Sprite(chocolat);
@@ -158,26 +158,26 @@ public class Quiz1 implements Screen {
 		spriteChocolat9.setPosition(350, 100);
 		spriteChocolat10.setSize(32, 32);
 		spriteChocolat10.setPosition(390, 100);
-		spriteResteChocolat1.setSize(32, 32);
-		spriteResteChocolat1.setPosition(30, 100);
-		spriteResteChocolat2.setSize(32, 32);
-		spriteResteChocolat2.setPosition(70, 100);
-		spriteResteChocolat3.setSize(32, 32);
-		spriteResteChocolat3.setPosition(110, 100);
-		spriteResteChocolat4.setSize(32, 32);
-		spriteResteChocolat4.setPosition(150, 100);
-		spriteResteChocolat5.setSize(32, 32);
-		spriteResteChocolat5.setPosition(190, 100);
-		spriteResteChocolat6.setSize(32, 32);
-		spriteResteChocolat6.setPosition(230, 100);
-		spriteResteChocolat7.setSize(32, 32);
-		spriteResteChocolat7.setPosition(270, 100);
-		spriteResteChocolat8.setSize(32, 32);
-		spriteResteChocolat8.setPosition(310, 100);
-		spriteResteChocolat9.setSize(32, 32);
-		spriteResteChocolat9.setPosition(350, 100);
-		spriteResteChocolat10.setSize(32, 32);
-		spriteResteChocolat10.setPosition(390, 100);
+		spriteResteChocolat1.setSize(16, 16);
+		spriteResteChocolat1.setPosition(40, 110);
+		spriteResteChocolat2.setSize(16, 16);
+		spriteResteChocolat2.setPosition(80, 110);
+		spriteResteChocolat3.setSize(16, 16);
+		spriteResteChocolat3.setPosition(120, 110);
+		spriteResteChocolat4.setSize(16, 16);
+		spriteResteChocolat4.setPosition(160, 110);
+		spriteResteChocolat5.setSize(16, 16);
+		spriteResteChocolat5.setPosition(200, 110);
+		spriteResteChocolat6.setSize(16, 16);
+		spriteResteChocolat6.setPosition(240, 110);
+		spriteResteChocolat7.setSize(16, 16);
+		spriteResteChocolat7.setPosition(280, 110);
+		spriteResteChocolat8.setSize(16, 16);
+		spriteResteChocolat8.setPosition(320, 110);
+		spriteResteChocolat9.setSize(16, 16);
+		spriteResteChocolat9.setPosition(360, 110);
+		spriteResteChocolat10.setSize(16, 16);
+		spriteResteChocolat10.setPosition(400, 110);
 
 	}
 
