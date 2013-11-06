@@ -22,8 +22,8 @@ public class MainMenu implements Screen {
 	private SpriteBatch batch;
 	private Texture background, play, playPressed, options, optionsPressed;
 	private Sprite spritebackground, spritePlay, spritePlayPressed, spriteOptions, spriteOptionsPressed;
-	private Rectangle rectangleQuest1, rectangleQuest2;
-	int screenWidth, screenHeight, spaceBetweenAnswers, spaceBetweenQuestAnswers, positionQuestion1;
+	private Rectangle rectanglePlay, rectangleOptions;
+	int screenWidth, screenHeight, posXbuttons, posYPlay, posYOptions, posXrectangles, posYrectPlay, posYrectOptions, rectanglesHeight, rectanglesWidth;
 	private TweenManager tweenManager;
 	
 	Jeu game;
@@ -45,9 +45,15 @@ public class MainMenu implements Screen {
 		
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		spaceBetweenAnswers = screenHeight / 6;
-		spaceBetweenQuestAnswers = screenHeight / 4;
-		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
+		posXbuttons = 32;
+		posYPlay = 550;
+		posYOptions = 400;
+		posXrectangles = 67;
+		posYrectPlay = screenHeight - 544 - 71;
+		posYrectOptions = screenHeight - 383 - 80;
+		rectanglesWidth = 348;
+		rectanglesHeight = 58; 
+		
 		
 		batch = new SpriteBatch();
 		background = new Texture(
@@ -67,10 +73,10 @@ public class MainMenu implements Screen {
 		spriteOptions = new Sprite(options);
 		spriteOptionsPressed = new Sprite(optionsPressed);
 		
-		spritePlay.setPosition(32, 550);
-		spritePlayPressed.setPosition(32, 550);
-		spriteOptions.setPosition(32, 400);
-		spriteOptionsPressed.setPosition(32, 400);
+		spritePlay.setPosition(posXbuttons, posYPlay);
+		spritePlayPressed.setPosition(posXbuttons, posYPlay);
+		spriteOptions.setPosition(posXbuttons, posYOptions);
+		spriteOptionsPressed.setPosition(posXbuttons, posYOptions);
 
 		/*********************************************************************************************************************************/
 		/******************************************Effet**********************************************************************************/
@@ -130,17 +136,17 @@ public class MainMenu implements Screen {
 	}
 
 	public void afficheBouton() {
-		rectangleQuest1 = new Rectangle(67, screenHeight - 544 - 71, 348, 58);
-		rectangleQuest2 = new Rectangle(67, screenHeight - 383 - 80, 348, 58);
+		rectanglePlay = new Rectangle(posXrectangles, posYrectPlay, rectanglesWidth, rectanglesHeight);
+		rectangleOptions = new Rectangle(posXrectangles, posYrectOptions, rectanglesWidth, rectanglesHeight);
 
-		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
+		if (rectanglePlay.contains(xDoigt, yDoigt) && maintenu) {
 
 			spritePlayPressed.draw(batch);
 
 		} else {
 			spritePlay.draw(batch);
 		}
-		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
+		if (rectangleOptions.contains(xDoigt, yDoigt) && maintenu) {
 			spriteOptionsPressed.draw(batch);
 		} else {
 			spriteOptions.draw(batch);
@@ -149,15 +155,15 @@ public class MainMenu implements Screen {
 	}
 	
 	public void changementScreen(int x, int y){
-		if (rectangleQuest1.contains(x, y) && maintenu){
+		if (rectanglePlay.contains(x, y) && maintenu){
 			game.setScreen(new ChoixQuiz(game));
-		} else if (rectangleQuest2.contains(x, y) && maintenu){
+		} else if (rectangleOptions.contains(x, y) && maintenu){
 			game.setScreen(new Options(game));
 		}
 	}
 	
 	public void soundTouchDown(int x, int y){
-		if(rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)){
+		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y)){
 			if (Jeu.getDesactiveMusicMenu() == false){
 				Jeu.musicMenu.setVolume(0.5f);
 			}else {
