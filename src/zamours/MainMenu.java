@@ -1,6 +1,5 @@
 package zamours;
 
-
 import aurelienribon.tweenengine.Timeline;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
@@ -21,28 +20,31 @@ public class MainMenu implements Screen {
 
 	private SpriteBatch batch;
 	private Texture background, play, playPressed, options, optionsPressed;
-	private Sprite spritebackground, spritePlay, spritePlayPressed, spriteOptions, spriteOptionsPressed;
+	private Sprite spritebackground, spritePlay, spritePlayPressed,
+			spriteOptions, spriteOptionsPressed;
 	private Rectangle rectanglePlay, rectangleOptions;
-	int screenWidth, screenHeight, posXbuttons, posYPlay, posYOptions, posXrectangles, posYrectPlay, posYrectOptions, rectanglesHeight, rectanglesWidth;
+	int screenWidth, screenHeight, posXbuttons, posYPlay, posYOptions,
+			posXrectangles, posYrectPlay, posYrectOptions, rectanglesHeight,
+			rectanglesWidth;
 	private TweenManager tweenManager;
-	
+
 	Jeu game;
 
-	MainMenu(Jeu game){
+	MainMenu(Jeu game) {
 		this.game = game;
 	}
-	
 
 	@Override
 	public void show() {
-		if (Jeu.getDesactiveMusicMenu() == false){
+		if (Jeu.getDesactiveMusicMenu() == false) {
 			Jeu.musicMenu.play();
-		}else {
+		} else {
 			Jeu.musicMenu.stop();
 		}
-		//musicMenu.setVolume(0.5f); // permet de baisser le volume de la musique du menu
+		// musicMenu.setVolume(0.5f); // permet de baisser le volume de la
+		// musique du menu
 		Texture.setEnforcePotImages(false);
-		
+
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		posXbuttons = 32;
@@ -52,9 +54,8 @@ public class MainMenu implements Screen {
 		posYrectPlay = screenHeight - 544 - 71;
 		posYrectOptions = screenHeight - 383 - 80;
 		rectanglesWidth = 348;
-		rectanglesHeight = 58; 
-		
-		
+		rectanglesHeight = 58;
+
 		batch = new SpriteBatch();
 		background = new Texture(
 				Gdx.files.internal("background_main_menu_s2.png"));
@@ -67,32 +68,31 @@ public class MainMenu implements Screen {
 		playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
 		options = new Texture(Gdx.files.internal("Options.png"));
 		optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
-		
+
 		spritePlay = new Sprite(play);
 		spritePlayPressed = new Sprite(playPressed);
 		spriteOptions = new Sprite(options);
 		spriteOptionsPressed = new Sprite(optionsPressed);
-		
+
 		spritePlay.setPosition(posXbuttons, posYPlay);
 		spritePlayPressed.setPosition(posXbuttons, posYPlay);
 		spriteOptions.setPosition(posXbuttons, posYOptions);
 		spriteOptionsPressed.setPosition(posXbuttons, posYOptions);
 
 		/*********************************************************************************************************************************/
-		/******************************************Effet**********************************************************************************/
+		/****************************************** Effet **********************************************************************************/
 		tweenManager = new TweenManager();
 		Tween.registerAccessor(Actor.class, new ActorAccessor());
-		
-		Timeline.createSequence().beginSequence()
-		.push(Tween.set(spritePlay, ActorAccessor.ALPHA).target(0))
-		.push(Tween.set(spriteOptions, ActorAccessor.ALPHA).target(0))
-		.push(Tween.to(spritePlay, ActorAccessor.ALPHA , .6f).target(1))
-		.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .6f).target(1))
-		.end().start(tweenManager);
+
+		Timeline.createSequence()
+				.beginSequence()
+				.push(Tween.set(spritePlay, ActorAccessor.ALPHA).target(0))
+				.push(Tween.set(spriteOptions, ActorAccessor.ALPHA).target(0))
+				.push(Tween.to(spritePlay, ActorAccessor.ALPHA, .6f).target(1))
+				.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .6f).target(
+						1)).end().start(tweenManager);
 		/********************************************************************************************************************************/
 	}
-
-
 
 	@Override
 	public void dispose() {
@@ -110,12 +110,12 @@ public class MainMenu implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 
 		manipulerMenu(); // gestion des input
-		
+
 		batch.begin();
 		spritebackground.draw(batch);
 		afficheBouton();
 		batch.end();
-		
+
 		tweenManager.update(delta);
 
 	}
@@ -136,8 +136,10 @@ public class MainMenu implements Screen {
 	}
 
 	public void afficheBouton() {
-		rectanglePlay = new Rectangle(posXrectangles, posYrectPlay, rectanglesWidth, rectanglesHeight);
-		rectangleOptions = new Rectangle(posXrectangles, posYrectOptions, rectanglesWidth, rectanglesHeight);
+		rectanglePlay = new Rectangle(posXrectangles, posYrectPlay,
+				rectanglesWidth, rectanglesHeight);
+		rectangleOptions = new Rectangle(posXrectangles, posYrectOptions,
+				rectanglesWidth, rectanglesHeight);
 
 		if (rectanglePlay.contains(xDoigt, yDoigt) && maintenu) {
 
@@ -153,27 +155,27 @@ public class MainMenu implements Screen {
 
 		}
 	}
-	
-	public void changementScreen(int x, int y){
-		if (rectanglePlay.contains(x, y) && maintenu){
+
+	public void changementScreen(int x, int y) {
+		if (rectanglePlay.contains(x, y) && maintenu) {
 			game.setScreen(new ChoixQuiz(game));
-		} else if (rectangleOptions.contains(x, y) && maintenu){
+		} else if (rectangleOptions.contains(x, y) && maintenu) {
 			game.setScreen(new Options(game));
 		}
 	}
-	
-	public void soundTouchDown(int x, int y){
-		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y)){
-			if (Jeu.getDesactiveMusicMenu() == false){
+
+	public void soundTouchDown(int x, int y) {
+		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y)) {
+			if (Jeu.getDesactiveMusicMenu() == false) {
 				Jeu.musicMenu.setVolume(0.5f);
-			}else {
+			} else {
 				Jeu.musicMenu.setVolume(0.f);
 			}
 			if (Jeu.getDesactiveSoundTouchDown() == false)
 				Jeu.soundTouchDown.play();
 		}
 	}
-	
+
 	public void manipulerMenu() {
 		Gdx.input.setInputProcessor(new InputProcessor() {
 
