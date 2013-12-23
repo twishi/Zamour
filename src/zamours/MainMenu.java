@@ -41,7 +41,7 @@ public class MainMenu implements Screen {
 		} else {
 			Jeu.musicMenu.stop();
 		}
-		// musicMenu.setVolume(0.5f); // permet de baisser le volume de la
+		 Jeu.musicMenu.setVolume(0.1f); // permet de baisser le volume de la
 		// musique du menu
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
