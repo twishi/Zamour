@@ -51,15 +51,19 @@ public class MainMenu implements Screen {
 		posYPlay = 550;
 		posYOptions = 400;
 		posYQuitter = 250;
+		
 		posXrectangles = 360;
-		posYrectPlay = screenHeight - 660;
-		posYrectOptions = screenHeight - 510;
-		posYrectQuitter = screenHeight - 360;
-		rectanglesWidth = 580;
-		rectanglesHeight = 100;
+		posYrectPlay = 250;
+		posYrectOptions = 400;
+		posYrectQuitter = 550;
+		
+		rectanglesWidth = 387;
+		rectanglesHeight = 90;
 
+//		background = new Texture(
+//				Gdx.files.internal("background_main_menu_1080_1920.png"));
 		background = new Texture(
-				Gdx.files.internal("background_main_menu_1080_1920.png"));
+		Gdx.files.internal("background_finished.png"));
 		play = new Texture(Gdx.files.internal("Jouer_480_800.png"));
 		playPressed = new Texture(Gdx.files.internal("Jouer_clicked_480_800.png"));
 		options = new Texture(Gdx.files.internal("Options_480_800.png"));

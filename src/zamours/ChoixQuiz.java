@@ -49,9 +49,10 @@ public class ChoixQuiz implements Screen {
 		screenHeight = Gdx.graphics.getHeight();
 
 		posXchoc = 400;
-		posYchoc1 = 450;
-		posYchoc2 = 300;
-		posYchoc3 = 150;
+		posYchoc1 = 550;
+		posYchoc2 = 400;
+		posYchoc3 = 250;
+		
 		posYclickChoc1 = 250;
 		posYclickChoc2 = 400;
 		posYclickChoc3 = 550;
