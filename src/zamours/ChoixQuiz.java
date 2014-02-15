@@ -68,7 +68,7 @@ public class ChoixQuiz implements Screen {
 		chocolat3 = new Texture(Gdx.files.internal("Quiz3_480_800.png"));
 
 		background = new Texture(
-				Gdx.files.internal("background_options_720_1280.png"));
+				Gdx.files.internal("background_red_marco_1280_800.png"));
 
 		batch = new SpriteBatch();
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
