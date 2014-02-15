@@ -75,7 +75,9 @@ public class ImageDebut implements Screen{
 		batch = new SpriteBatch();
 		tweenManager = new TweenManager();
 		Tween.registerAccessor(Sprite.class, new ImageDebutEffet());
-		imageDebut=new Texture(Gdx.files.internal("hommefemme.png"));
+
+		imageDebut=new Texture(Gdx.files.internal("pulse_1280_800_remake.png"));
+		
 		spriteImageDebut = new Sprite(imageDebut);
 		spriteImageDebut.setSize(screenWidth, screenHeight);
 		

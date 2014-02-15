@@ -8,8 +8,8 @@ public class LanceurDesktop {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Love Quiz";
 		cfg.useGL20 = true;
-		cfg.width = 720;
-		cfg.height = 1280;
+		cfg.width = 1280;
+		cfg.height = 800;
 		
 		new LwjglApplication(new Jeu(), cfg);
 	}

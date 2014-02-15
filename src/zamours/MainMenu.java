@@ -41,54 +41,35 @@ public class MainMenu implements Screen {
 		} else {
 			Jeu.musicMenu.stop();
 		}
-		 Jeu.musicMenu.setVolume(0.1f); // permet de baisser le volume de la
+		Jeu.musicMenu.setVolume(0.1f); // permet de baisser le volume de la
 		// musique du menu
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-		if (screenWidth == 480 && screenHeight == 800) {
-			posXbuttons = 32;
-			posYPlay = 550;
-			posYOptions = 400;
-			posXrectangles = 67;
-			posYrectPlay = screenHeight - 544 - 71;
-			posYrectOptions = screenHeight - 383 - 80;
-			rectanglesWidth = 348;
-			rectanglesHeight = 58;
-			
-			background = new Texture(
-					Gdx.files.internal("background_main_menu_s2.png"));
-			play = new Texture(Gdx.files.internal("Play.png"));
-			playPressed = new Texture(Gdx.files.internal("PlayPressed.png"));
-			options = new Texture(Gdx.files.internal("Options.png"));
-			optionsPressed = new Texture(Gdx.files.internal("OptionsPressed.png"));
-			
-		}
-		else if(screenWidth == 720 && screenHeight == 1280){
-			posXbuttons = 10;
-			posYPlay = 850;
-			posYOptions = 650;
-			posXrectangles = 70;
-			posYrectPlay = screenHeight - 748 + 100;
-			posYrectOptions = screenHeight - 612 + 100;
-			rectanglesWidth = 580;
-			rectanglesHeight = 67;
-			
-			background = new Texture(
-					Gdx.files.internal("background_main_menu_s3.png"));
-			play = new Texture(Gdx.files.internal("Play_s3.png"));
-			playPressed = new Texture(Gdx.files.internal("PlayPressed_s3.png"));
-			options = new Texture(Gdx.files.internal("Options_s3.png"));
-			optionsPressed = new Texture(Gdx.files.internal("OptionsPressed_s3.png"));
-		}
+
+		posXbuttons = 300;
+		posYPlay = 550;
+		posYOptions = 400;
+		posXrectangles = 360;
+		posYrectPlay = screenHeight - 660;
+		posYrectOptions = screenHeight - 510;
+		rectanglesWidth = 580;
+		rectanglesHeight = 100;
+
+		background = new Texture(
+				Gdx.files.internal("background_main_menu_1080_1920.png"));
+		play = new Texture(Gdx.files.internal("Play_s3.png"));
+		playPressed = new Texture(Gdx.files.internal("PlayPressed_s3.png"));
+		options = new Texture(Gdx.files.internal("Options_s3.png"));
+		optionsPressed = new Texture(
+				Gdx.files.internal("OptionsPressed_s3.png"));
 
 		batch = new SpriteBatch();
-		
+
 		spritebackground = new Sprite(background);
 		spritebackground.setSize(screenWidth, screenHeight);
 
 		/********************************** Placement des boutons ****************************************************************/
-
 
 		spritePlay = new Sprite(play);
 		spritePlayPressed = new Sprite(playPressed);

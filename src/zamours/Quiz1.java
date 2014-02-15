@@ -71,9 +71,9 @@ public class Quiz1 implements Screen {
 		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
 		 */
 		backgroundBoy = new Texture(
-				Gdx.files.internal("background_blue_s2.png"));
+				Gdx.files.internal("background_blue_1080_1920.png"));
 		backgroundGirl = new Texture(
-				Gdx.files.internal("background_pink_s2.png"));
+				Gdx.files.internal("background_pink_1080_1920.png"));
 		spritebackgroundBoy = new Sprite(backgroundBoy);
 		spritebackgroundGirl = new Sprite(backgroundGirl);
 		spritebackgroundBoy.setSize(screenWidth, screenHeight);
@@ -90,15 +90,15 @@ public class Quiz1 implements Screen {
 
 		/********************************** Placement des 3 rectangles ****************************************************************/
 
-		textureRectangle1 = new Texture(Gdx.files.internal("reponse.png"));
+		textureRectangle1 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle1bis = new Texture(
-				Gdx.files.internal("reponseClick.png"));
-		textureRectangle2 = new Texture(Gdx.files.internal("reponse.png"));
+				Gdx.files.internal("reponseClick_720_1280.png"));
+		textureRectangle2 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle2bis = new Texture(
-				Gdx.files.internal("reponseClick.png"));
-		textureRectangle3 = new Texture(Gdx.files.internal("reponse.png"));
+				Gdx.files.internal("reponseClick_720_1280.png"));
+		textureRectangle3 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle3bis = new Texture(
-				Gdx.files.internal("reponseClick.png"));
+				Gdx.files.internal("reponseClick_720_1280.png"));
 		/*********************************************************************************************************************************/
 
 		tabReponseBoy = new int[10];
