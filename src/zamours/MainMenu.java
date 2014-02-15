@@ -47,15 +47,16 @@ public class MainMenu implements Screen {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
+		// j'ai diminue de 50 les Yboutons et Yrect pour mettre les boutons plus bas
 		posXbuttons = 400;
-		posYPlay = 550;
-		posYOptions = 400;
-		posYQuitter = 250;
+		posYPlay = 500;
+		posYOptions = 350;
+		posYQuitter = 200;
 		
 		posXrectangles = 360;
-		posYrectPlay = 250;
-		posYrectOptions = 400;
-		posYrectQuitter = 550;
+		posYrectPlay = 200;
+		posYrectOptions = 350;
+		posYrectQuitter = 500;
 		
 		rectanglesWidth = 387;
 		rectanglesHeight = 90;

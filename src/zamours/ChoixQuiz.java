@@ -48,14 +48,15 @@ public class ChoixQuiz implements Screen {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
+		// j'ai diminue de 50 les Yboutons et Yrect pour mettre les boutons plus bas
 		posXchoc = 400;
-		posYchoc1 = 550;
-		posYchoc2 = 400;
-		posYchoc3 = 250;
+		posYchoc1 = 500;
+		posYchoc2 = 350;
+		posYchoc3 = 200;
 		
-		posYclickChoc1 = 250;
-		posYclickChoc2 = 400;
-		posYclickChoc3 = 550;
+		posYclickChoc1 = 200;
+		posYclickChoc2 = 450;
+		posYclickChoc3 = 500;
 		widthChoc = 387;
 		heightChoc = 90;
 
