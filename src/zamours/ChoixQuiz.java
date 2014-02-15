@@ -48,13 +48,15 @@ public class ChoixQuiz implements Screen {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
+		// j'ai diminue de 50 les Yboutons et Yrect pour mettre les boutons plus bas
 		posXchoc = 400;
-		posYchoc1 = 450;
-		posYchoc2 = 300;
-		posYchoc3 = 150;
-		posYclickChoc1 = 250;
-		posYclickChoc2 = 400;
-		posYclickChoc3 = 550;
+		posYchoc1 = 500;
+		posYchoc2 = 350;
+		posYchoc3 = 200;
+		
+		posYclickChoc1 = 200;
+		posYclickChoc2 = 450;
+		posYclickChoc3 = 500;
 		widthChoc = 387;
 		heightChoc = 90;
 
@@ -67,7 +69,7 @@ public class ChoixQuiz implements Screen {
 		chocolat3 = new Texture(Gdx.files.internal("Quiz3_480_800.png"));
 
 		background = new Texture(
-				Gdx.files.internal("background_options_720_1280.png"));
+				Gdx.files.internal("background_red_marco_1280_800.png"));
 
 		batch = new SpriteBatch();
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
@@ -158,6 +160,14 @@ public class ChoixQuiz implements Screen {
 	public void screenTouchUp(int x, int y) {
 		if (rectangleQuiz1.contains(x, y) && maintenu) {
 			game.setScreen(new Quiz1(game));
+			Jeu.musicMenu.stop();
+		}
+		if (rectangleQuiz2.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz2(game));
+			Jeu.musicMenu.stop();
+		}
+		if (rectangleQuiz3.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz3(game));
 			Jeu.musicMenu.stop();
 		}
 	}
