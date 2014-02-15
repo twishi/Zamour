@@ -68,7 +68,7 @@ public class ChoixQuiz implements Screen {
 		chocolat3 = new Texture(Gdx.files.internal("Quiz3_480_800.png"));
 
 		background = new Texture(
-				Gdx.files.internal("background_options_720_1280.png"));
+				Gdx.files.internal("background_red_marco_1280_800.png"));
 
 		batch = new SpriteBatch();
 		retourMenu = new Texture(Gdx.files.internal("backbutton1.png"));
@@ -159,6 +159,14 @@ public class ChoixQuiz implements Screen {
 	public void screenTouchUp(int x, int y) {
 		if (rectangleQuiz1.contains(x, y) && maintenu) {
 			game.setScreen(new Quiz1(game));
+			Jeu.musicMenu.stop();
+		}
+		if (rectangleQuiz2.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz2(game));
+			Jeu.musicMenu.stop();
+		}
+		if (rectangleQuiz3.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz3(game));
 			Jeu.musicMenu.stop();
 		}
 	}
