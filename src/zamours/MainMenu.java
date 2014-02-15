@@ -19,12 +19,12 @@ public class MainMenu implements Screen {
 	boolean maintenu;
 
 	private SpriteBatch batch;
-	private Texture background, play, playPressed, options, optionsPressed;
+	private Texture background, play, playPressed, options, optionsPressed, quitter, quitterPressed;
 	private Sprite spritebackground, spritePlay, spritePlayPressed,
-			spriteOptions, spriteOptionsPressed;
-	private Rectangle rectanglePlay, rectangleOptions;
-	int screenWidth, screenHeight, posXbuttons, posYPlay, posYOptions,
-			posXrectangles, posYrectPlay, posYrectOptions, rectanglesHeight,
+			spriteOptions, spriteOptionsPressed, spriteQuitter, spriteQuitterPressed;
+	private Rectangle rectanglePlay, rectangleOptions, rectangleQuitter;
+	int screenWidth, screenHeight, posXbuttons, posYPlay, posYOptions, posYQuitter,
+			posXrectangles, posYrectPlay, posYrectOptions, posYrectQuitter, rectanglesHeight,
 			rectanglesWidth;
 	private TweenManager tweenManager;
 
@@ -41,28 +41,32 @@ public class MainMenu implements Screen {
 		} else {
 			Jeu.musicMenu.stop();
 		}
-		Jeu.musicMenu.setVolume(0.1f); // permet de baisser le volume de la
+		Jeu.musicMenu.setVolume(0.5f); // permet de baisser le volume de la
 		// musique du menu
 		Texture.setEnforcePotImages(false);
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
-		posXbuttons = 300;
+		posXbuttons = 400;
 		posYPlay = 550;
 		posYOptions = 400;
+		posYQuitter = 250;
 		posXrectangles = 360;
 		posYrectPlay = screenHeight - 660;
 		posYrectOptions = screenHeight - 510;
+		posYrectQuitter = screenHeight - 360;
 		rectanglesWidth = 580;
 		rectanglesHeight = 100;
 
 		background = new Texture(
 				Gdx.files.internal("background_main_menu_1080_1920.png"));
-		play = new Texture(Gdx.files.internal("Play_s3.png"));
-		playPressed = new Texture(Gdx.files.internal("PlayPressed_s3.png"));
-		options = new Texture(Gdx.files.internal("Options_s3.png"));
+		play = new Texture(Gdx.files.internal("Jouer_480_800.png"));
+		playPressed = new Texture(Gdx.files.internal("Jouer_clicked_480_800.png"));
+		options = new Texture(Gdx.files.internal("Options_480_800.png"));
 		optionsPressed = new Texture(
-				Gdx.files.internal("OptionsPressed_s3.png"));
+				Gdx.files.internal("Options_clicked_480_800.png"));
+		quitter = new Texture(Gdx.files.internal("Quitter_480_800.png"));
+		quitterPressed = new Texture(Gdx.files.internal("Quitter_clicked_480_800.png"));
 
 		batch = new SpriteBatch();
 
@@ -75,11 +79,15 @@ public class MainMenu implements Screen {
 		spritePlayPressed = new Sprite(playPressed);
 		spriteOptions = new Sprite(options);
 		spriteOptionsPressed = new Sprite(optionsPressed);
+		spriteQuitter = new Sprite(quitter);
+		spriteQuitterPressed = new Sprite(quitterPressed);
 
 		spritePlay.setPosition(posXbuttons, posYPlay);
 		spritePlayPressed.setPosition(posXbuttons, posYPlay);
 		spriteOptions.setPosition(posXbuttons, posYOptions);
 		spriteOptionsPressed.setPosition(posXbuttons, posYOptions);
+		spriteQuitter.setPosition(posXbuttons, posYQuitter);
+		spriteQuitterPressed.setPosition(posXbuttons, posYQuitter);
 
 		/*********************************************************************************************************************************/
 		/****************************************** Effet **********************************************************************************/
@@ -90,8 +98,10 @@ public class MainMenu implements Screen {
 				.beginSequence()
 				.push(Tween.set(spritePlay, ActorAccessor.ALPHA).target(0))
 				.push(Tween.set(spriteOptions, ActorAccessor.ALPHA).target(0))
+				.push(Tween.set(spriteQuitter, ActorAccessor.ALPHA).target(0))
 				.push(Tween.to(spritePlay, ActorAccessor.ALPHA, .6f).target(1))
-				.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .6f).target(
+				.push(Tween.to(spriteOptions, ActorAccessor.ALPHA, .6f).target(1))
+				.push(Tween.to(spriteQuitter, ActorAccessor.ALPHA, .6f).target(
 						1)).end().start(tweenManager);
 		/********************************************************************************************************************************/
 	}
@@ -142,19 +152,25 @@ public class MainMenu implements Screen {
 				rectanglesWidth, rectanglesHeight);
 		rectangleOptions = new Rectangle(posXrectangles, posYrectOptions,
 				rectanglesWidth, rectanglesHeight);
+		rectangleQuitter = new Rectangle(posXrectangles, posYrectQuitter,
+				rectanglesWidth, rectanglesHeight);
 
 		if (rectanglePlay.contains(xDoigt, yDoigt) && maintenu) {
-
 			spritePlayPressed.draw(batch);
-
 		} else {
 			spritePlay.draw(batch);
 		}
+		
 		if (rectangleOptions.contains(xDoigt, yDoigt) && maintenu) {
 			spriteOptionsPressed.draw(batch);
 		} else {
 			spriteOptions.draw(batch);
-
+		}
+		
+		if (rectangleQuitter.contains(xDoigt, yDoigt) && maintenu) {
+			spriteQuitterPressed.draw(batch);
+		} else {
+			spriteQuitter.draw(batch);
 		}
 	}
 
@@ -167,7 +183,7 @@ public class MainMenu implements Screen {
 	}
 
 	public void soundTouchDown(int x, int y) {
-		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y)) {
+		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y) || rectangleQuitter.contains(x, y)) {
 			if (Jeu.getDesactiveMusicMenu() == false) {
 				Jeu.musicMenu.setVolume(0.5f);
 			} else {
