@@ -22,7 +22,7 @@ public class ChoixQuiz implements Screen {
 	private Rectangle rectangleQuiz1, rectangleQuiz2, rectangleQuiz3;
 	private Circle circleBackButton;
 	int screenWidth, screenHeight, posXchoc, posYchoc1, posYchoc2, posYchoc3,
-			posYclickChoc1, posYclickChoc2, posYclickChoc3, widthChoc,
+			posXclick, posYclickChoc1, posYclickChoc2, posYclickChoc3, widthChoc,
 			heightChoc, posXback, posYback, rayonBack;
 
 	/************* obligé pour le changement de screen *************/
@@ -54,8 +54,9 @@ public class ChoixQuiz implements Screen {
 		posYchoc2 = 350;
 		posYchoc3 = 200;
 		
+		posXclick = 443;
 		posYclickChoc1 = 200;
-		posYclickChoc2 = 450;
+		posYclickChoc2 = 350;
 		posYclickChoc3 = 500;
 		widthChoc = 387;
 		heightChoc = 90;

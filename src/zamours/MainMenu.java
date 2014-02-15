@@ -53,7 +53,7 @@ public class MainMenu implements Screen {
 		posYOptions = 350;
 		posYQuitter = 200;
 		
-		posXrectangles = 360;
+		posXrectangles = 443;
 		posYrectPlay = 200;
 		posYrectOptions = 350;
 		posYrectQuitter = 500;
@@ -61,10 +61,10 @@ public class MainMenu implements Screen {
 		rectanglesWidth = 387;
 		rectanglesHeight = 90;
 
-//		background = new Texture(
-//				Gdx.files.internal("background_main_menu_1080_1920.png"));
 		background = new Texture(
-		Gdx.files.internal("background_red_marco_1280_800.png"));
+				Gdx.files.internal("background_finished.png"));
+//		background = new Texture(
+//		Gdx.files.internal("background_red_marco_1280_800.png"));
 		play = new Texture(Gdx.files.internal("Jouer_480_800.png"));
 		playPressed = new Texture(Gdx.files.internal("Jouer_clicked_480_800.png"));
 		options = new Texture(Gdx.files.internal("Options_480_800.png"));
@@ -184,8 +184,11 @@ public class MainMenu implements Screen {
 			game.setScreen(new ChoixQuiz(game));
 		} else if (rectangleOptions.contains(x, y) && maintenu) {
 			game.setScreen(new Options(game));
-		}
+		} else if (rectangleQuitter.contains(x, y) && maintenu) {
+			Gdx.app.exit();
+		
 	}
+}
 
 	public void soundTouchDown(int x, int y) {
 		if (rectanglePlay.contains(x, y) || rectangleOptions.contains(x, y) || rectangleQuitter.contains(x, y)) {
