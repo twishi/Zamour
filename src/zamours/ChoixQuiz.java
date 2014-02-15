@@ -161,6 +161,14 @@ public class ChoixQuiz implements Screen {
 			game.setScreen(new Quiz1(game));
 			Jeu.musicMenu.stop();
 		}
+		if (rectangleQuiz2.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz2(game));
+			Jeu.musicMenu.stop();
+		}
+		if (rectangleQuiz3.contains(x, y) && maintenu) {
+			game.setScreen(new Quiz3(game));
+			Jeu.musicMenu.stop();
+		}
 	}
 
 	public void manipulerMenu() {

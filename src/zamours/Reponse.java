@@ -108,10 +108,10 @@ public class Reponse {
 			break;
 		case 3:
 			tabReponse[0][0] = "C’est excellent et stimulant pour la vie de couple.";
-			tabReponse[0][1] = "Ça ne concerne que les hommes qui les regardent plus ou moins en cachette.";
+			tabReponse[0][1] = "Ça ne concerne que les hommes qui les regardent plus ou\nmoins en cachette.";
 			tabReponse[0][2] = "C’est nul et sans intérêt.";
 			tabReponse[1][0] = "C’est excellent et stimulant pour la vie de couple.";
-			tabReponse[1][1] = "Ça ne concerne que les hommes qui les regardent plus ou moins en cachette.";
+			tabReponse[1][1] = "Ça ne concerne que les hommes qui les regardent plus ou\nmoins en cachette.";
 			tabReponse[1][2] = "C’est nul et sans intérêt.";
 			tabReponse[2][0] = "Carrément indécent Que fait la police !.";
 			tabReponse[2][1] = "Tout à fait charmant, c’est bien mieux que les géraniums.";
@@ -119,10 +119,10 @@ public class Reponse {
 			tabReponse[3][0] = "Carrément indécent Que fait la police !.";
 			tabReponse[3][1] = "Tout à fait charmant, c’est bien mieux que les géraniums.";
 			tabReponse[3][2] = "Un peu décevant, pourquoi elle a gardé le string.";
-			tabReponse[4][0] = "Aujourd’hui vous pourriez lui dire, aujourd’hui on part en weekend thalasso !.";
+			tabReponse[4][0] = "Aujourd’hui vous pourriez lui dire, aujourd’hui on part\nen weekend thalasso !.";
 			tabReponse[4][1] = "Allez, on se fait un bon resto !.";
 			tabReponse[4][2] = "J’ai acheté du cassoulet, y’avait une promo !.";
-			tabReponse[5][0] = "Aujourd’hui vous pourriez lui dire, aujourd’hui on part en weekend thalasso !.";
+			tabReponse[5][0] = "Aujourd’hui vous pourriez lui dire, aujourd’hui on part\nen weekend thalasso !.";
 			tabReponse[5][1] = "Allez, on se fait un bon resto !.";
 			tabReponse[5][2] = "J’ai acheté du cassoulet, y’avait une promo !.";
 			tabReponse[6][0] = "En voiture.";
