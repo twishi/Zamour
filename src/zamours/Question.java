@@ -15,10 +15,10 @@ public class Question {
 		case 1:
 			tabQuestions[0] = "1. Si tu lui donnais le nom d'un plat\nce serait :";
 			tabQuestions[1] = "1. S'il te donnait le nom d'un plat\nce serait :  ";
-			tabQuestions[2] = "2. La première fois qu'il t'a vu sur\nune piste de danse, il s'est dit : ";
-			tabQuestions[3] = "2. La première fois que tu l'as vue sur \nune piste de danse, \ntu t'es dit : ";
-			tabQuestions[4] = "3. Elle a déposé dans toute la maison des sous-vêtements \net t'attends sur le lit";
-			tabQuestions[5] = "3. Tu as déposé dans toute la maison des sous-vêtements \net tu l'attendez sur le lit";
+			tabQuestions[2] = "2. S'il était un acteur, il serait :";
+			tabQuestions[3] = "2. Si tu étais un acteur, tu serais :";
+			tabQuestions[4] = "3. Le voyage qu'elle rêve de faire serait plutôt :";
+			tabQuestions[5] = "3. Ton voyage idéal serait :";
 			tabQuestions[6] = "4. En discothèque, il serait plutôt :";
 			tabQuestions[7] = "4. En discothèque, tu serais plutôt : ";
 			tabQuestions[8] = "5. Si elle était un film\nelle serait :";
