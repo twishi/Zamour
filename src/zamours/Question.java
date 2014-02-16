@@ -13,30 +13,30 @@ public class Question {
 	public String afficheQuestionQuizz(int numQuestion) {
 		switch (numQuizz) {
 		case 1:
-			tabQuestions[0] = "1. Si tu lui donnais le nom d'un plat\nce serait :";
-			tabQuestions[1] = "1. S'il te donnait le nom d'un plat\nce serait :  ";
+			tabQuestions[0] = "1. Si tu lui donnais le nom d'un plat ce serait :";
+			tabQuestions[1] = "1. S'il te donnait le nom d'un plat ce serait :  ";
 			tabQuestions[2] = "2. S'il était un acteur, il serait :";
 			tabQuestions[3] = "2. Si tu étais un acteur, tu serais :";
 			tabQuestions[4] = "3. Le voyage qu'elle rêve de faire serait plutôt :";
 			tabQuestions[5] = "3. Ton voyage idéal serait :";
 			tabQuestions[6] = "4. En discothèque, il serait plutôt :";
 			tabQuestions[7] = "4. En discothèque, tu serais plutôt : ";
-			tabQuestions[8] = "5. Si elle était un film\nelle serait :";
+			tabQuestions[8] = "5. Si elle était un film elle serait :";
 			tabQuestions[9] = "5. Si tu etais un film tu serais :";
-			tabQuestions[10] = "6. S'il ne pouvait partir en voyage\navec qui rêverais-tu de partir :";
-			tabQuestions[11] = "6. Si tu ne pouvais partir en voyage\n avec qui rêverait-elle de partir :";
+			tabQuestions[10] = "6. S'il ne pouvait partir en voyage avec qui rêverais-tu de partir :";
+			tabQuestions[11] = "6. Si tu ne pouvais partir en voyage  avec qui rêverait-elle de partir :";
 			tabQuestions[12] = "7. A la maison elle est plutôt :";
 			tabQuestions[13] = "7. A la maison tu es plutôt :";
 			tabQuestions[14] = "8. Sa boisson préférée c'est :";
 			tabQuestions[15] = "8. Ta boisson préférée c'est :";
 			tabQuestions[16] = "9. Sa meilleure amie est :";
 			tabQuestions[17] = "9. Ta meilleure amie est :";
-			tabQuestions[18] = "10. S'il était un animal\nil serait :";
+			tabQuestions[18] = "10. S'il était un animal il serait :";
 			tabQuestions[19] = "10. Si tu étais un animal tu serais :";
 			return tabQuestions[numQuestion];
 		case 2:
-			tabQuestions[0] = "1. Elle écrit un roman érotique dans lequel \nelle dévoile tous ses fantasmes. D'après toi ce serait plutôt du genre : ";
-			tabQuestions[1] = "1. Tu écris un roman érotique dans lequel \ntu dévoiles tous tes fantasmes. D'après lui ce serait plutôt du genre :  ";
+			tabQuestions[0] = "1. Elle écrit un roman érotique dans lequel elle dévoile tous ses fantasmes. D'après toi ce serait plutôt du genre : ";
+			tabQuestions[1] = "1. Tu écris un roman érotique dans lequel tu dévoiles tous tes fantasmes. D'après lui ce serait plutôt du genre :  ";
 			tabQuestions[2] = "2. Il doit changer de voiture, il opterait pour : ";
 			tabQuestions[3] = "2. Tu dois changer de voiture, d'après elle tu opterais pour : ";
 			tabQuestions[4] = "3. Tu dois aller à une émission de télévision ce serait :";
