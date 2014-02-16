@@ -112,7 +112,7 @@ public class Quiz1 implements Screen {
 		}
 		
 		chocolat = new Texture(Gdx.files.internal("bonne_rep.png"));
-		resteChocolat = new Texture(Gdx.files.internal("miete.png"));
+		resteChocolat = new Texture(Gdx.files.internal("mauvaise_rep.png"));
 		spriteChocolat1 = new Sprite(chocolat);
 		spriteChocolat2 = new Sprite(chocolat);
 		spriteChocolat3 = new Sprite(chocolat);
@@ -134,45 +134,45 @@ public class Quiz1 implements Screen {
 		spriteResteChocolat9 = new Sprite(resteChocolat);
 		spriteResteChocolat10 = new Sprite(resteChocolat);
 		spriteChocolat1.setSize(32, 32);
-		spriteChocolat1.setPosition(30, 100);
+		spriteChocolat1.setPosition(450, 100);
 		spriteChocolat2.setSize(32, 32);
-		spriteChocolat2.setPosition(70, 100);
+		spriteChocolat2.setPosition(490, 100);
 		spriteChocolat3.setSize(32, 32);
-		spriteChocolat3.setPosition(110, 100);
+		spriteChocolat3.setPosition(530, 100);
 		spriteChocolat4.setSize(32, 32);
-		spriteChocolat4.setPosition(150, 100);
+		spriteChocolat4.setPosition(570, 100);
 		spriteChocolat5.setSize(32, 32);
-		spriteChocolat5.setPosition(190, 100);
+		spriteChocolat5.setPosition(610, 100);
 		spriteChocolat6.setSize(32, 32);
-		spriteChocolat6.setPosition(230, 100);
+		spriteChocolat6.setPosition(650, 100);
 		spriteChocolat7.setSize(32, 32);
-		spriteChocolat7.setPosition(270, 100);
+		spriteChocolat7.setPosition(690, 100);
 		spriteChocolat8.setSize(32, 32);
-		spriteChocolat8.setPosition(310, 100);
+		spriteChocolat8.setPosition(730, 100);
 		spriteChocolat9.setSize(32, 32);
-		spriteChocolat9.setPosition(350, 100);
+		spriteChocolat9.setPosition(770, 100);
 		spriteChocolat10.setSize(32, 32);
-		spriteChocolat10.setPosition(390, 100);
+		spriteChocolat10.setPosition(810, 100);
 		spriteResteChocolat1.setSize(16, 16);
-		spriteResteChocolat1.setPosition(40, 110);
+		spriteResteChocolat1.setPosition(460, 110);
 		spriteResteChocolat2.setSize(16, 16);
-		spriteResteChocolat2.setPosition(80, 110);
+		spriteResteChocolat2.setPosition(500, 110);
 		spriteResteChocolat3.setSize(16, 16);
-		spriteResteChocolat3.setPosition(120, 110);
+		spriteResteChocolat3.setPosition(540, 110);
 		spriteResteChocolat4.setSize(16, 16);
-		spriteResteChocolat4.setPosition(160, 110);
+		spriteResteChocolat4.setPosition(580, 110);
 		spriteResteChocolat5.setSize(16, 16);
-		spriteResteChocolat5.setPosition(200, 110);
+		spriteResteChocolat5.setPosition(620, 110);
 		spriteResteChocolat6.setSize(16, 16);
-		spriteResteChocolat6.setPosition(240, 110);
+		spriteResteChocolat6.setPosition(660, 110);
 		spriteResteChocolat7.setSize(16, 16);
-		spriteResteChocolat7.setPosition(280, 110);
+		spriteResteChocolat7.setPosition(700, 110);
 		spriteResteChocolat8.setSize(16, 16);
-		spriteResteChocolat8.setPosition(320, 110);
+		spriteResteChocolat8.setPosition(740, 110);
 		spriteResteChocolat9.setSize(16, 16);
-		spriteResteChocolat9.setPosition(360, 110);
+		spriteResteChocolat9.setPosition(780, 110);
 		spriteResteChocolat10.setSize(16, 16);
-		spriteResteChocolat10.setPosition(400, 110);
+		spriteResteChocolat10.setPosition(820, 110);
 
 	}
 
