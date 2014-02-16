@@ -68,7 +68,7 @@ public class ResultatDuQuiz implements Screen {
 
 		batch = new SpriteBatch();
 		background = new Texture(
-				Gdx.files.internal("background_options_s2.png"));
+				Gdx.files.internal("background_options_choix_quiz_1280_800.png"));
 		spritebackground = new Sprite(background);
 		spritebackground.setSize(screenWidth, screenHeight);
 
@@ -127,123 +127,149 @@ public class ResultatDuQuiz implements Screen {
 		switch (Jeu.nbRepJuste) {
 		case 0:
 			spriteChocolatFinal0.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "0/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"Ola... votre score est de 0 reponses juste. Il y a surement des moments où l'un a du mal à comprendre\n"
+							+ "l'autre et même à le supporter, mais cela n'empêche pas du tout d'envisager une union positive,\nle couple "
+							+ "construit avec le temps des bases solides. Peut-être que vous n'êtes pas tombés sur des questions\nqui étaient "
+							+ "en votre faveur. En attendant, c'est le pire score qui soit ! Essayez un autre Quiz, il sera difficile\nde faire"
+							+ " moins bien !",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 1:
 			spriteChocolatFinal1.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "1/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							":/ ... Votre score est de 1 reponse juste. Vous n'avez pas pris le temps de réfléchir,\n"
+							+ "ou alors votre partenaire cache bien son jeu ! Vous êtes peut être sur la même longueur d'onde,\n"
+							+ "mais ne connaissez pas encore votre partenaire comme il se doit.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 2:
 			spriteChocolatFinal2.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "2/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							":/ ... Votre score est de 2 reponse juste. Vous n'avez pas pris le temps de réfléchir,\n"
+									+ "ou alors votre partenaire cache bien son jeu ! Vous êtes peut être sur la même longueur d'onde,\n"
+									+ "mais ne connaissez pas encore votre partenaire comme il se doit.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 3:
 			spriteChocolatFinal3.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "3/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							":/ ... Votre score est de 3 reponse juste. Vous n'avez pas pris le temps de réfléchir,\n"
+									+ "ou alors votre partenaire cache bien son jeu ! Vous êtes peut être sur la même longueur d'onde,\n"
+									+ "mais ne connaissez pas encore votre partenaire comme il se doit.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 4:
 			spriteChocolatFinal4.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "4/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							":/ ... Votre score est de 4 reponse juste. Vous n'avez pas pris le temps de réfléchir,\n"
+									+ "ou alors votre partenaire cache bien son jeu ! Vous êtes peut être sur la même longueur d'onde,\n"
+									+ "mais ne connaissez pas encore votre partenaire comme il se doit.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 5:
 			spriteChocolatFinal5.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "5/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"C'est tout juste la moyenne, votre score est de 5 reponses juste.\n"
+							+ "Vous vous connaissez plutot bien, mais il reste encore des parties chez votre\n"
+							+ "partenaire à découvrir.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 6:
 			spriteChocolatFinal6.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "6/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"A peine plus que la moyenne, votre score est de 6 reponses juste.\n"
+							+ "C'est pas mal, mais vous pouvez surement faire mieux !\n"
+							+ "Vous êtes plutot proche l'un de l'autre mais manquez peut être encore d'experience.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 7:
 			spriteChocolatFinal7.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "7/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"C'est très bien, votre score est de 7 reponses juste.\n"
+							+ "Vous vous comprennez, et vous avez appris à vous connaître avec le temps.\n"
+							+ "Votre couple doit faire envier vos amis, vous êtes très proche.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 8:
 			spriteChocolatFinal8.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "8/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"C'est très bien, votre score est de 8 reponses juste.\n"
+									+ "Vous vous comprennez, et vous avez appris à vous connaître avec le temps.\n"
+									+ "Votre couple doit faire envier vos amis, vous êtes très proche.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 9:
 			spriteChocolatFinal9.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Incredible", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "9/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez très bien,\nc'est presque un sans faute !",
+							"C'est presque un sans faute Votre score est de 9 reponses juste, c'est dommage\n"
+							+ "il ne manquait pas grand chose pour atteindre le score parfait.\n"
+							+ "Vous êtes très proche et connaissez très bien les réactions de votre partenaire\n"
+							+ "suivant la situation. Vous êtes sans doute ensemble depuis un moment..",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 10:
 			spriteChocolatFinal10.draw(batch);
-			fontmessage1.drawMultiLine(batch, "Amazing", 0, screenHeight / 2
+			fontmessage1.drawMultiLine(batch, "10/10", 0, screenHeight / 2
 					+ screenHeight / 3 - screenHeight / 9, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Felicitations vous vous connaissez sur le bout des doigts,\nc'est un sans faute !",
+							"Bravo !! c'est un sans faute ! votre score est de 10 reponses juste, vous vous connaissez\n"
+							+ "sur le bout des doigts. Rien ne vous échappe, vous êtes très complices et sur la même\n"
+							+ "longueur d'onde. Votre couple forme l'association parfaite.\n"
+							+ "Une très longue histoire est envisageable.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		}
