@@ -62,7 +62,7 @@ public class MainMenu implements Screen {
 		rectanglesHeight = 90;
 
 		background = new Texture(
-				Gdx.files.internal("background_finished.png"));
+				Gdx.files.internal("background_menu_1280_800.png"));
 //		background = new Texture(
 //		Gdx.files.internal("background_red_marco_1280_800.png"));
 		play = new Texture(Gdx.files.internal("Jouer_480_800.png"));

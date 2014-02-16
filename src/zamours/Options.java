@@ -50,7 +50,7 @@ public class Options implements Screen {
 		widthRectSono = 100;
 		heightRectSono = 70;
 		background = new Texture(
-				Gdx.files.internal("background_red_marco_1280_800.png"));
+				Gdx.files.internal("background_options_choix_quiz_1280_800.png"));
 		/****** les boutons pour le son *****/
 		noteMusique = new Texture(
 				Gdx.files.internal("pics_note_musique_s3.png"));
