@@ -1,5 +1,5 @@
 package zamours;
-
+/** remplacer les pos par variable*/
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -63,8 +63,6 @@ public class Quiz1 implements Screen {
 
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
-
-		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
 
 		batch = new SpriteBatch();
 		/**
@@ -221,16 +219,13 @@ public class Quiz1 implements Screen {
 		case 1:
 			pageSex = "boy";
 			spritebackgroundBoy.draw(batch);
-			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(0),
-					0, screenHeight - screenHeight / 5, screenWidth,
-					HAlignment.CENTER);
+			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(0), 0, 640, 1280,HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 0),
-					screenWidth / 10, positionQuestion1);
+					150, 560);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					150, 410);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					150, 260);
 			break;
 
 		case 2:
@@ -688,21 +683,21 @@ public class Quiz1 implements Screen {
 
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
-			batch.draw(textureRectangle1bis, -8, 432);
+			batch.draw(textureRectangle1bis, 10, 445);
 
 		} else {
-			batch.draw(textureRectangle1, -5, 432);
+			batch.draw(textureRectangle1, 10, 445);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle2bis, -8, 297);
+			batch.draw(textureRectangle2bis, 10, 290);
 		} else {
-			batch.draw(textureRectangle2, -5, 297);
+			batch.draw(textureRectangle2, 10, 290);
 
 		}
 		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle3bis, -8, 165);
+			batch.draw(textureRectangle3bis, 10, 135);
 		} else {
-			batch.draw(textureRectangle3, -5, 165);
+			batch.draw(textureRectangle3, 10, 135);
 		}
 	}
 

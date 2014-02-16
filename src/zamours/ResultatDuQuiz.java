@@ -133,7 +133,7 @@ public class ResultatDuQuiz implements Screen {
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Ola... votre score est de 0 reponses juste. Il y a surement des moments où l'un a du mal à comprendre\n"
+							"Ola... votre score est de 0 reponse juste. Il y a surement des moments où l'un a du mal à comprendre\n"
 							+ "l'autre et même à le supporter, mais cela n'empêche pas du tout d'envisager une union positive,\nle couple "
 							+ "construit avec le temps des bases solides. Peut-être que vous n'êtes pas tombés sur des questions\nqui étaient "
 							+ "en votre faveur. En attendant, c'est le pire score qui soit ! Essayez un autre Quiz, il sera difficile\nde faire"
@@ -252,10 +252,10 @@ public class ResultatDuQuiz implements Screen {
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"C'est presque un sans faute Votre score est de 9 reponses juste, c'est dommage\n"
+							"C'est presque un sans faute ! Votre score est de 9 reponses juste, c'est dommage\n"
 							+ "il ne manquait pas grand chose pour atteindre le score parfait.\n"
 							+ "Vous êtes très proche et connaissez très bien les réactions de votre partenaire\n"
-							+ "suivant la situation. Vous êtes sans doute ensemble depuis un moment..",
+							+ "suivant la situation. Vous êtes sans doute ensemble depuis un moment.",
 							0, screenHeight / 3, screenWidth, HAlignment.CENTER);
 			break;
 		case 10:
@@ -266,7 +266,7 @@ public class ResultatDuQuiz implements Screen {
 			fontmessage1
 					.drawMultiLine(
 							batch,
-							"Bravo !! c'est un sans faute ! votre score est de 10 reponses juste, vous vous connaissez\n"
+							"Bravo !! c'est un sans faute ! Votre score est de 10 reponses juste, vous vous connaissez\n"
 							+ "sur le bout des doigts. Rien ne vous échappe, vous êtes très complices et sur la même\n"
 							+ "longueur d'onde. Votre couple forme l'association parfaite.\n"
 							+ "Une très longue histoire est envisageable.",
