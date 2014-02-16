@@ -35,9 +35,10 @@ public class Quiz2 implements Screen {
 	private Circle circleBackButton;
 	private Question quest1;
 	private Reponse rep1;
-	int screenWidth, screenHeight, spaceBetweenAnswers,
-			spaceBetweenQuestAnswers, positionQuestion1;
-	private float xDoigt, yDoigt; // secondes a attendre avant apparition resultatquiz;
+	int screenWidth, screenHeight, positionReponse1, positionReponse2,
+			positionReponse3, posXRep;
+	private float xDoigt, yDoigt; // secondes a attendre avant apparition
+									// resultatquiz;
 	int[] tabReponseBoy, tabReponseGirl;
 	boolean[] reponse;
 	private String pageSex; // need pour savoir quel tableau remplir dans
@@ -64,12 +65,7 @@ public class Quiz2 implements Screen {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
-		positionQuestion1 = screenHeight / 2 + screenHeight / 7;
-
 		batch = new SpriteBatch();
-		/**
-		 * xhdpi: 640x960 px hdpi: 480x800 px mdpi: 320x480 px ldpi: 240x320 px
-		 */
 		backgroundBoy = new Texture(
 				Gdx.files.internal("background_blue_1080_1920.png"));
 		backgroundGirl = new Texture(
@@ -82,21 +78,26 @@ public class Quiz2 implements Screen {
 		fontmessage1 = new BitmapFont(Gdx.files.internal("font/white.fnt"),
 				false);
 
-		spaceBetweenAnswers = screenHeight / 6;
-		spaceBetweenQuestAnswers = screenHeight / 4;
+		posXRep = 150;
+		positionReponse1 = 560;
+		positionReponse2 = 410;
+		positionReponse3 = 260;
 
 		quest1 = new Question(2);
 		rep1 = new Reponse(2);
 
 		/********************************** Placement des 3 rectangles ****************************************************************/
 
-		textureRectangle1 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
+		textureRectangle1 = new Texture(
+				Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle1bis = new Texture(
 				Gdx.files.internal("reponseClick_720_1280.png"));
-		textureRectangle2 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
+		textureRectangle2 = new Texture(
+				Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle2bis = new Texture(
 				Gdx.files.internal("reponseClick_720_1280.png"));
-		textureRectangle3 = new Texture(Gdx.files.internal("reponse_720_1280.png"));
+		textureRectangle3 = new Texture(
+				Gdx.files.internal("reponse_720_1280.png"));
 		textureRectangle3bis = new Texture(
 				Gdx.files.internal("reponseClick_720_1280.png"));
 		/*********************************************************************************************************************************/
@@ -109,10 +110,10 @@ public class Quiz2 implements Screen {
 
 		/***************************************** Affichage coeur ou reste en fonction de la rep **************************************/
 		reponse = new boolean[10];
-		for(int i=0; i < reponse.length; i++){
+		for (int i = 0; i < reponse.length; i++) {
 			reponse[i] = false;
 		}
-		
+
 		chocolat = new Texture(Gdx.files.internal("bonne_rep.png"));
 		resteChocolat = new Texture(Gdx.files.internal("mauvaise_rep.png"));
 		spriteChocolat1 = new Sprite(chocolat);
@@ -222,15 +223,13 @@ public class Quiz2 implements Screen {
 			pageSex = "boy";
 			spritebackgroundBoy.draw(batch);
 			fontmessage1.drawMultiLine(batch, quest1.afficheQuestionQuizz(0),
-					0, screenHeight - screenHeight / 5, screenWidth,
-					HAlignment.CENTER);
+					0, 640, 1280, HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(0, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 
 		case 2:
@@ -240,12 +239,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(1, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(1, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(1, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 3:
 			pageSex = "girl";
@@ -254,12 +252,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(2, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(2, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(2, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 4:
 			pageSex = "boy";
@@ -268,12 +265,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(3, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(3, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(3, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 5:
 			pageSex = "boy";
@@ -282,12 +278,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(4, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(4, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(4, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 6:
 			pageSex = "girl";
@@ -296,12 +291,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(5, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(5, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(5, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 7:
 			pageSex = "girl";
@@ -310,12 +304,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(6, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(6, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(6, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 8:
 			pageSex = "boy";
@@ -324,12 +317,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(7, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(7, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(7, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 9:
 			pageSex = "boy";
@@ -338,12 +330,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(8, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(8, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(8, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 10:
 			pageSex = "girl";
@@ -352,12 +343,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(9, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(9, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(9, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 11:
 			pageSex = "girl";
@@ -366,12 +356,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(10, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(10, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(10, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 12:
 			pageSex = "boy";
@@ -380,12 +369,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(11, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(11, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(11, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 13:
 			pageSex = "boy";
@@ -394,12 +382,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(12, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(12, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(12, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 14:
 			pageSex = "girl";
@@ -408,12 +395,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(13, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(13, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(13, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 15:
 			pageSex = "girl";
@@ -422,12 +408,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(14, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(14, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(14, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 16:
 			pageSex = "boy";
@@ -436,12 +421,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(15, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(15, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(15, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 17:
 			pageSex = "boy";
@@ -450,12 +434,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(16, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(16, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(16, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 18:
 			pageSex = "girl";
@@ -464,12 +447,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(17, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(17, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(17, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 19:
 			pageSex = "girl";
@@ -478,12 +460,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(18, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(18, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(18, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 		case 20:
 			pageSex = "boy";
@@ -492,12 +473,11 @@ public class Quiz2 implements Screen {
 					0, screenHeight - screenHeight / 5, screenWidth,
 					HAlignment.CENTER);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(19, 0),
-					screenWidth / 10, positionQuestion1);
+					posXRep, positionReponse1);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(19, 1),
-					screenWidth / 10, positionQuestion1 - spaceBetweenAnswers);
+					posXRep, positionReponse2);
 			fontmessage1.drawMultiLine(batch, rep1.afficheReponseQuizz(19, 2),
-					screenWidth / 10, positionQuestion1 - 2
-							* spaceBetweenAnswers);
+					posXRep, positionReponse3);
 			break;
 
 		}
@@ -528,53 +508,54 @@ public class Quiz2 implements Screen {
 			return false;
 		}
 	}
-	
-	public void afficheCoeur(){
-		if(reponse[0]){
+
+	public void afficheCoeur() {
+		if (reponse[0]) {
 			spriteChocolat1.draw(batch);
-		}
-		else  spriteResteChocolat1.draw(batch);
-		if(reponse[1]){
+		} else
+			spriteResteChocolat1.draw(batch);
+		if (reponse[1]) {
 			spriteChocolat2.draw(batch);
-		}
-		else  spriteResteChocolat2.draw(batch);
-		if(reponse[2]){
+		} else
+			spriteResteChocolat2.draw(batch);
+		if (reponse[2]) {
 			spriteChocolat3.draw(batch);
-		}
-		else  spriteResteChocolat3.draw(batch);
-		if(reponse[3]){
+		} else
+			spriteResteChocolat3.draw(batch);
+		if (reponse[3]) {
 			spriteChocolat4.draw(batch);
-		}
-		else  spriteResteChocolat4.draw(batch);
-		if(reponse[4]){
+		} else
+			spriteResteChocolat4.draw(batch);
+		if (reponse[4]) {
 			spriteChocolat5.draw(batch);
-		}
-		else  spriteResteChocolat5.draw(batch);
-		if(reponse[5]){
+		} else
+			spriteResteChocolat5.draw(batch);
+		if (reponse[5]) {
 			spriteChocolat6.draw(batch);
-		}
-		else  spriteResteChocolat6.draw(batch);
-		if(reponse[6]){
+		} else
+			spriteResteChocolat6.draw(batch);
+		if (reponse[6]) {
 			spriteChocolat7.draw(batch);
-		}
-		else  spriteResteChocolat7.draw(batch);
-		if(reponse[7]){
+		} else
+			spriteResteChocolat7.draw(batch);
+		if (reponse[7]) {
 			spriteChocolat8.draw(batch);
-		}
-		else  spriteResteChocolat8.draw(batch);
-		if(reponse[8]){
+		} else
+			spriteResteChocolat8.draw(batch);
+		if (reponse[8]) {
 			spriteChocolat9.draw(batch);
-		}
-		else  spriteResteChocolat9.draw(batch);
-		if(reponse[9]){
+		} else
+			spriteResteChocolat9.draw(batch);
+		if (reponse[9]) {
 			spriteChocolat10.draw(batch);
-		}
-		else  spriteResteChocolat10.draw(batch);
+		} else
+			spriteResteChocolat10.draw(batch);
 	}
 
 	public void clickDown(int x, int y) {
 		if (rectangleQuest1.contains(x, y) || rectangleQuest2.contains(x, y)
-				|| rectangleQuest3.contains(x, y) || circleBackButton.contains(x,y)) {
+				|| rectangleQuest3.contains(x, y)
+				|| circleBackButton.contains(x, y)) {
 			if (Jeu.getDesactiveSoundTouchDown() == false)
 				soundTouchDown.play();
 		}
@@ -657,7 +638,7 @@ public class Quiz2 implements Screen {
 			compareReponses();
 
 			game.setScreen(new ResultatDuQuiz(game)); // changement de
-			
+
 			// page,
 			// redirection
 			// vers la
@@ -669,40 +650,33 @@ public class Quiz2 implements Screen {
 	public void questionTouched() {
 
 		/** bouton retour **/
-		circleBackButton = new Circle(screenWidth / 15 + 34, 47, 26);
+		circleBackButton = new Circle(70, 710, 35);
 
-		rectangleQuest1 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 - 17, screenWidth - 2
-				* ((screenWidth / 10) - 10), 85);
-		rectangleQuest2 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + spaceBetweenAnswers - 17, screenWidth - 2
-				* ((screenWidth / 10) - 10), 85);
-		rectangleQuest3 = new Rectangle((screenWidth / 10) - 10, screenHeight
-				- positionQuestion1 + 2 * spaceBetweenAnswers - 17, screenWidth
-				- 2 * ((screenWidth / 10) - 10), 85);
+		rectangleQuest1 = new Rectangle(130, 200, 1010, 133);
+		rectangleQuest2 = new Rectangle(130, 355, 1010, 133);
+		rectangleQuest3 = new Rectangle(130, 510, 1010, 133);
 
 		afficheQuestionReponses();
 
-		batch.draw(retourMenu, screenWidth / 15, screenHeight - screenHeight
-				/ 10);
+		batch.draw(retourMenu, 50, 50);
 
 		if (rectangleQuest1.contains(xDoigt, yDoigt) && maintenu) {
 
-			batch.draw(textureRectangle1bis, -8, 432);
+			batch.draw(textureRectangle1bis, 10, 445);
 
 		} else {
-			batch.draw(textureRectangle1, -5, 432);
+			batch.draw(textureRectangle1, 10, 445);
 		}
 		if (rectangleQuest2.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle2bis, -8, 297);
+			batch.draw(textureRectangle2bis, 10, 290);
 		} else {
-			batch.draw(textureRectangle2, -5, 297);
+			batch.draw(textureRectangle2, 10, 290);
 
 		}
 		if (rectangleQuest3.contains(xDoigt, yDoigt) && maintenu) {
-			batch.draw(textureRectangle3bis, -8, 165);
+			batch.draw(textureRectangle3bis, 10, 135);
 		} else {
-			batch.draw(textureRectangle3, -5, 165);
+			batch.draw(textureRectangle3, 10, 135);
 		}
 	}
 
@@ -719,7 +693,7 @@ public class Quiz2 implements Screen {
 
 			@Override
 			public boolean touchUp(int x, int y, int arg2, int arg3) {
-				if (Jeu.numeroQuestionQuiz <= 20){
+				if (Jeu.numeroQuestionQuiz <= 20) {
 					testRep(x, y);
 				}
 				xDoigt = 0;
@@ -735,8 +709,8 @@ public class Quiz2 implements Screen {
 
 			@Override
 			public boolean touchDown(int x, int y, int arg2, int arg3) {
-				if (Jeu.numeroQuestionQuiz <= 20){
-					clickDown(x, y);				
+				if (Jeu.numeroQuestionQuiz <= 20) {
+					clickDown(x, y);
 				}
 				xDoigt = x;
 				yDoigt = y;

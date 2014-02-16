@@ -316,10 +316,9 @@ public class ResultatDuQuiz implements Screen {
 	}
 
 	public void afficheBouton() {
-		circleBackButton = new Circle(screenWidth / 7 + 5, screenHeight
-				- screenHeight / 8, 28);
+		circleBackButton = new Circle(70, 710, 35);
 
-		batch.draw(retourMenu, screenWidth / 12, screenHeight / 12);
+		batch.draw(retourMenu, 50, 50);
 
 	}
 
